@@ -1,23 +1,17 @@
+---
+import "../styles/global.css";
+const { title = "HOMEIX Sofa & Furniture Studio" } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="warm-craft">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
+		<title>{title}</title>
 		<slot />
-	</body>
+	</head>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
