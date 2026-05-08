@@ -1,81 +1,72 @@
 ---
-import MobileNav from "@/components/react/MobileNav.tsx";
-import Container from "@/components/homeix/Container.astro";
+// src/components/Navbar.astro
+import { Search, User, ShoppingCart, Heart, HelpCircle, Globe } from 'lucide-react';
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Collections", href: "/collections" },
-  { label: "Offers", href: "/offers" },
-  { label: "Contact", href: "/contact" },
+  "New In", "Furniture", "Lighting", "Home Improvement", 
+  "Baby & Kids", "Outdoor", "Salon & Spa", "Rugs", "Home Decor", "Sale"
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
-<header
-  id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md transition-colors duration-500"
->
-  <Container class="h-16 flex items-center justify-between">
-    <!-- Logo -->
-    <a
-      href="/"
-      class="font-display text-lg md:text-xl font-normal tracking-[0.2em] text-foreground"
-    >
-      HOMEIX
+<header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+  <!-- Top Row: Logo, Search, Actions -->
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    
+    <!-- Logo Slot -->
+    <a href="/" class="shrink-0 flex items-center gap-2">
+      <!-- Replace with your actual Logo Image -->
+      <div class="w-8 h-8 bg-black rounded flex items-center justify-center text-white font-bold text-lg">L</div>
+      <span class="text-xl font-bold tracking-tight hidden sm:block">Litfad</span>
     </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      {
-        navLinks.map(({ label, href }) => {
-          const isActive =
-            currentPath === href ||
-            (href !== "/" && currentPath.startsWith(href));
-          return (
-            <a
-              href={href}
-              class:list={[
-                "text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors duration-200",
-                isActive
-                  ? "text-primary border-b border-primary pb-1"
-                  : "text-muted-foreground hover:text-foreground",
-              ]}
-            >
-              {label}
-            </a>
-          );
-        })
-      }
-    </nav>
-
-    <!-- Desktop CTA -->
-    <div class="hidden md:flex items-center gap-4">
-      <a
-        href="/contact"
-        class="px-6 py-2.5 border border-primary text-primary text-[11px] font-semibold tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-      >
-        Inquire
-      </a>
+    <!-- Search Bar (Shadcn-style Input + Button) -->
+    <div class="flex-1 max-w-2xl relative">
+      <input 
+        type="text" 
+        placeholder="Search for products and ideas" 
+        class="w-full h-10 pl-4 pr-10 rounded-full border border-gray-300 text-sm focus:outline-none focus:border-gray-400 transition-colors"
+      />
+      <button class="absolute right-1 top-1 bottom-1 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500">
+        <Search  />
+      </button>
     </div>
 
-    <!-- Mobile Hamburger (React island) -->
-    <MobileNav links={navLinks} client:load />
-  </Container>
-</header>
+    <!-- Action Icons -->
+    <!-- <div class="flex items-center gap-1 sm:gap-2">
+      <a href="#" class="p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-full transition-colors" aria-label="Account">
+        <User  />
+      </a>
+      <a href="#" class="p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-full transition-colors relative" aria-label="Cart">
+        <ShoppingCart />
+        <span class="absolute top-1 right-1 w-2 h-2 bg-orange-500 rounded-full"></span>
+      </a>
+      <a href="#" class="p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-full transition-colors" aria-label="Wishlist">
+        <Heart />
+      </a>
+      <a href="#" class="p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-full transition-colors hidden md:flex" aria-label="Help">
+        <HelpCircle  />
+      </a>
+      <a href="#" class="p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-full transition-colors hidden md:flex" aria-label="Language">
+        <Globe />
+      </a>
+    </div> -->
+  </div>
 
-<!-- Scroll-aware header background -->
-<script>
-  const header = document.getElementById("site-header");
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.scrollY > 20) {
-        header?.classList.add("bg-background/95", "border-border");
-      } else {
-        header?.classList.remove("bg-background/95", "border-border");
-      }
-    },
-    { passive: true },
-  );
-</script>
+  <!-- Bottom Row: Navigation Links -->
+  <nav class="border-t border-gray-100 hidden md:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="flex items-center gap-6 overflow-x-auto scrollbar-hide py-2.5">
+        {navLinks.map((link) => (
+          <li>
+            <a 
+              href="#" 
+              class="text-sm font-medium text-gray-700 hover:text-orange-600 whitespace-nowrap transition-colors"
+            >
+              {link}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>

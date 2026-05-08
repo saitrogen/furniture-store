@@ -8,7 +8,7 @@ interface Props {
   description?: string;
   ogImage?: string;
 }
-
+// Todo: add og image in public folder
 const {
   title,
   description = "Premium handcrafted furniture from Nilambur, Kerala. Factory-direct to your home.",
@@ -51,7 +51,7 @@ const canonicalURL = Astro.site
   <body
     class="bg-background text-foreground font-sans antialiased min-h-screen"
   >
-    <Navbar />
+    <Navbar/>
 
     <main>
       <slot />
