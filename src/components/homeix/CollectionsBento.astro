@@ -1,0 +1,66 @@
+---
+import Container from "./Container.astro";
+
+const collections = [
+    {
+        title: "Sofa Sets",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZWFYDxpobD7pjdmgl6jHLcI9qga9CeNxp00E8e-scocFNDcNx1UHE17XSF4IdEw4Z3Xwvroq2bA3Ve6k0QpDMyecA14yOmqGd-qIGu6Hp3ltxcrGmJkzinwYPq4LxWqtmdo9-z8kdYmU0Idtx6G2wC1SF543xvMNZuExNucbTcKzMUnAsXSFbOWOTMS2ijIotiFrSD4qTBxHHN41XSFVbFXWNoWZ0pyUWZvOvJC1lXppGrpDoX_i1Q9Q8qXVjgcLh0Bg7IBb7X_rq",
+    },
+    {
+        title: "L-Shaped Sofas",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuASV_DTLQYnFfyIGOEkXUn04KsSYUZ0VA-hRaG5oByVW6Q-H1vmn86dgu-gBGd9bKD3NbWx7NuQ6LOgq11CHmGCLoiJ7b71myiFxcicui5khmOURPolw9Bdcngs6UCoK5XsxOtzYRyIFBzm8xpo1MhO58aOnFobDZyF_uoAMpUu_SIHzyxJdDPB0fFAWW8znUgN2kTl_IKSaT06vAQe6WqO4vSoF7Ac3RpX5S6VjJhtjCBlcV1L1RVY001_bIWMTgYdOJ1HtTVVAkc5",
+    },
+    {
+        title: "Beds & Bedroom",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA_OYNvMn-PSdBvMdrtllIX5WzMl-CDOceHKONkWLvrJL42fMN8pzjOoGuGWt1iUaf_Q2X7w46bpqdMAS_po_c_eNtjWQnbsyD8A5e4kiUA024xnQIgDfIHKQYm5s2RNgbE13rwAnEwJeAkWexR9eZnCMLpSkS4_CZmQ7ZC7FtAhmOc_D7RbUFHVeQTsTna8UkajVDPxCu1RVG__PyC2wxjykttskl0QzoRupC0OG6jN_EJCKCyBOhdSF0ZEtjYI62ppBGscX6TVHjb",
+    },
+    {
+        title: "Wardrobes",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDIzpnTdAp0O9O20aNouxNWVsBjaawFfFblN3S04SBDMDnJlLY4HWodI0dNJ8xX8lMe9nIa0q8Y7LcwdrWrgAW1Gq8reC1rB9TBTf588aJxyFVC7mCyoz_jHUxi5FKnyDkiH0krGq52AYhSy-VGt6ey9AuKcRqHZy4JfZk-c5mk--1bvfQ9jexk_R2iqYFUW0Z0PZ6nhxGmc7S5T-fLSBGcwq_kB1k9Nmdowat483oJkPRbA59LqHHxPbp-YtlTAlTcnJ7J8GhSzI9Q",
+    },
+    {
+        title: "Combo Packages",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuASV_DTLQYnFfyIGOEkXUn04KsSYUZ0VA-hRaG5oByVW6Q-H1vmn86dgu-gBGd9bKD3NbWx7NuQ6LOgq11CHmGCLoiJ7b71myiFxcicui5khmOURPolw9Bdcngs6UCoK5XsxOtzYRyIFBzm8xpo1MhO58aOnFobDZyF_uoAMpUu_SIHzyxJdDPB0fFAWW8znUgN2kTl_IKSaT06vAQe6WqO4vSoF7Ac3RpX5S6VjJhtjCBlcV1L1RVY001_bIWMTgYdOJ1HtTVVAkc5",
+    },
+    {
+        title: "Dining Sets",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD0kq5sFoT2YH4Oz21DoBJFysC0FIkudeZNo8oLT_grx6p0jTfHT6hQLbEBEEwWg7GTvEa0ANwK1asdcjPKUdTLntsZdACMVDAsvTyj8gdXyMLNu4dSLIZKY1CdvtopyWk9sHW5DeZVwYISUEgoHv02T0klVyoUGHd0pPuP22Amgh4TTBq3m6VkJFQhLHWVWdBxz6W3ncfJGCilD6o2jYkdVW_Hfs9wzkm0ldDWmtTHHlumSdV2JGvNidhtGwd8NprhS0DPedi5S9bg",
+    },
+];
+---
+
+<section class="py-20 md:py-28">
+    <Container>
+        <div class="mb-10">
+            <p class="text-[11px] uppercase tracking-[0.35em] text-primary">
+                Our Collections
+            </p>
+            <h2 class="mt-4 font-display text-3xl md:text-5xl text-foreground">
+                Crafted for every space
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+                collections.map(({ title, image }) => (
+                    <a
+                        href="/collections"
+                        class="group relative overflow-hidden border border-border bg-card aspect-4/5"
+                    >
+                        <img
+                            src={image}
+                            alt={title}
+                            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent" />
+                        <div class="relative z-10 mt-auto flex h-full items-end p-6">
+                            <h3 class="font-display text-xl text-foreground">
+                                {title}
+                            </h3>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </Container>
+</section>

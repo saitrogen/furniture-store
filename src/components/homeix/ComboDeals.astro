@@ -1,0 +1,48 @@
+---
+import Container from "./Container.astro";
+import ComboDealCard from "./ComboDealCard.astro";
+
+const combos = [
+    {
+        title: "Bedroom Combo",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA_OYNvMn-PSdBvMdrtllIX5WzMl-CDOceHKONkWLvrJL42fMN8pzjOoGuGWt1iUaf_Q2X7w46bpqdMAS_po_c_eNtjWQnbsyD8A5e4kiUA024xnQIgDfIHKQYm5s2RNgbE13rwAnEwJeAkWexR9eZnCMLpSkS4_CZmQ7ZC7FtAhmOc_D7RbUFHVeQTsTna8UkajVDPxCu1RVG__PyC2wxjykttskl0QzoRupC0OG6jN_EJCKCyBOhdSF0ZEtjYI62ppBGscX6TVHjb",
+        items: [
+            "Premium Teak Bed",
+            "3-Door Wardrobe",
+            "Orthopedic Mattress",
+            "Hand-tufted Carpet",
+            "Designer Accent Chairs",
+            "Matching Teapoy",
+        ],
+        price: "₹1,49,999",
+        badge: "Best Value",
+    },
+    {
+        title: "Living Room Combo",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuASV_DTLQYnFfyIGOEkXUn04KsSYUZ0VA-hRaG5oByVW6Q-H1vmn86dgu-gBGd9bKD3NbWx7NuQ6LOgq11CHmGCLoiJ7b71myiFxcicui5khmOURPolw9Bdcngs6UCoK5XsxOtzYRyIFBzm8xpo1MhO58aOnFobDZyF_uoAMpUu_SIHzyxJdDPB0fFAWW8znUgN2kTl_IKSaT06vAQe6WqO4vSoF7Ac3RpX5S6VjJhtjCBlcV1L1RVY001_bIWMTgYdOJ1HtTVVAkc5",
+        items: [
+            "Luxury L-Shaped Sofa",
+            "Marble-top Center Table",
+            "Two Winged Side Chairs",
+        ],
+        price: "₹99,999",
+        badge: "Best Value",
+    },
+];
+---
+
+<section class="py-20 md:py-28 border-t border-border">
+    <Container>
+        <div class="mb-10 text-center">
+            <p class="text-[11px] uppercase tracking-[0.35em] text-primary">
+                Exclusive Combo Deals
+            </p>
+            <h2 class="mt-4 font-display text-3xl md:text-5xl text-foreground">
+                Curated bundles, unmatched value
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {combos.map((combo) => <ComboDealCard {...combo} />)}
+        </div>
+    </Container>
+</section>

@@ -1,0 +1,58 @@
+---
+import Label from "@/components/ui/Label.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    product: CollectionEntry<"products">;
+}
+
+const { product } = Astro.props;
+const { title, price, category, coverImage, slug } = product.data;
+
+const categoryLabels: Record<string, string> = {
+    "living-room": "Living Room",
+    bedroom: "Bedroom",
+    dining: "Dining",
+    storage: "Storage",
+    seating: "Seating",
+    combo: "Combo Deals",
+};
+---
+
+<article class="group flex flex-col gap-4">
+    <!-- Image -->
+    <a
+        href={`/collections/${slug}`}
+        class="block overflow-hidden border border-border bg-card aspect-4/5"
+    >
+        <img
+            src={coverImage}
+            alt={title}
+            loading="lazy"
+            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+        />
+    </a>
+
+    <!-- Meta -->
+    <div class="flex flex-col gap-2">
+        <Label text={categoryLabels[category] ?? category} />
+        <h3 class="font-display text-xl text-foreground leading-snug">
+            <a
+                href={`/collections/${slug}`}
+                class="hover:text-primary transition-colors duration-200"
+            >
+                {title}
+            </a>
+        </h3>
+        <p class="text-sm text-muted-foreground">
+            ₹{price.toLocaleString("en-IN")}
+        </p>
+    </div>
+
+    <a
+        href={`/collections/${slug}`}
+        class="inline-flex items-center px-4 py-2 text-[10px] font-semibold tracking-[0.2em] uppercase border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+    >
+        View Details
+    </a>
+</article>

@@ -26,3 +26,4 @@ pnpm-debug.log*
 # pages
 guide.astro
 test.astro
+temp/*

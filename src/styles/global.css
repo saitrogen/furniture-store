@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource/noto-serif";
+@import "@fontsource-variable/manrope";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -141,6 +143,68 @@
     --sidebar-accent-foreground: oklch(0.920 0.010 72);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.680 0.072 58);
+}
+/* ============================================
+   HOMEIX — Atelier Noir Gold Theme
+   Usage: <html class="homeix"> or <body class="homeix">
+   ============================================ */
+
+
+.homeix {
+    /* Base surfaces */
+    --background:        oklch(0.090 0.005 60);   /* #131313 Obsidian */
+    --foreground:        oklch(0.920 0.008 75);   /* #E5E2E1 Studio White */
+
+    /* Cards */
+    --card:              oklch(0.120 0.006 58);   /* #1C1B1B Carbon */
+    --card-foreground:   oklch(0.920 0.008 75);
+
+    /* Popover */
+    --popover:           oklch(0.120 0.006 58);
+    --popover-foreground: oklch(0.920 0.008 75);
+
+    /* Primary = Gilded Cream Gold */
+    --primary:           oklch(0.740 0.095 72);   /* #C9A96E */
+    --primary-foreground: oklch(0.090 0.005 60);  /* black text on gold */
+
+    /* Secondary = surface-bright */
+    --secondary:         oklch(0.230 0.008 55);   /* #353535 */
+    --secondary-foreground: oklch(0.920 0.008 75);
+
+    /* Muted */
+    --muted:             oklch(0.175 0.007 56);   /* #2A2A2A */
+    --muted-foreground:  oklch(0.650 0.025 68);   /* #998F81 warm gray */
+
+    /* Accent */
+    --accent:            oklch(0.175 0.007 56);
+    --accent-foreground: oklch(0.920 0.008 75);
+
+    /* Borders & Inputs */
+    --border:            oklch(0.740 0.095 72 / 25%); /* gold at 25% opacity */
+    --input:             oklch(0.740 0.095 72 / 35%); /* underline inputs */
+    --ring:              oklch(0.740 0.095 72);
+
+    /* Radius — sharp, 0px per design system */
+    --radius:            0px;
+
+    /* Fonts */
+    --font-display:      'Noto Serif', Georgia, serif;
+    --font-sans:         'Manrope Variable', sans-serif;
+    --font-heading:      var(--font-display);
+}
+
+/* Ambient gold glow for depth (replaces drop shadows) */
+.homeix .gold-glow {
+    box-shadow: 0 0 24px 0 oklch(0.740 0.095 72 / 8%);
+}
+
+/* Marquee animation for Offers banner */
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+.homeix .animate-marquee {
+    animation: marquee 20s linear infinite;
 }
 
 @layer base {

@@ -1,0 +1,58 @@
+---
+import Container from "./Container.astro";
+
+const testimonials = [
+    {
+        name: "Ramesh K.",
+        location: "Nilambur, Kerala",
+        quote: "The quality of the teak wood and the finish is exceptional. It has transformed our living room completely.",
+    },
+    {
+        name: "Sneha M.",
+        location: "Kochi, Kerala",
+        quote: "Incredible value for money. Getting factory-direct prices for such premium designs is a game-changer.",
+    },
+    {
+        name: "Arjun P.",
+        location: "Kozhikode, Kerala",
+        quote: "The delivery was seamless and the team set everything up perfectly. Highly recommend HOMEIX.",
+    },
+];
+---
+
+<section class="py-20 md:py-28">
+    <Container>
+        <div class="mb-10 text-center">
+            <p class="text-[11px] uppercase tracking-[0.35em] text-primary">
+                Testimonials
+            </p>
+            <h2 class="mt-4 font-display text-3xl md:text-5xl text-foreground">
+                What our customers say
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {
+                testimonials.map(({ name, location, quote }) => (
+                    <div class="border border-border bg-card p-6 flex flex-col gap-6">
+                        <div class="flex gap-1 text-primary">
+                            {Array.from({ length: 5 }).map(() => (
+                                <span class="material-symbols-outlined text-base">
+                                    star
+                                </span>
+                            ))}
+                        </div>
+                        <p class="text-sm text-foreground italic">“{quote}”</p>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-primary">
+                                {name}
+                            </p>
+                            <p class="text-xs text-muted-foreground">
+                                {location}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
+</section>

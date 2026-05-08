@@ -1,0 +1,80 @@
+---
+interface Props {
+    title: string;
+    image: string;
+    items: string[];
+    price: string;
+    originalPrice?: string;
+    badge?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+}
+
+const {
+    title,
+    image,
+    items,
+    price,
+    originalPrice,
+    badge,
+    ctaLabel = "Get This Deal",
+    ctaHref = "/contact",
+} = Astro.props;
+---
+
+<article class="border border-border bg-card flex flex-col overflow-hidden">
+    <div class="relative h-64 overflow-hidden">
+        <img
+            src={image}
+            alt={title}
+            class="h-full w-full object-cover"
+            loading="lazy"
+        />
+        <div
+            class="absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent"
+        >
+        </div>
+        {
+            badge && (
+                <span class="absolute top-4 right-4 bg-primary px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-primary-foreground">
+                    {badge}
+                </span>
+            )
+        }
+    </div>
+    <div class="p-6 flex flex-col gap-5">
+        <div>
+            <h3 class="font-display text-2xl text-foreground">{title}</h3>
+            <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
+                {
+                    items.map((item) => (
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-base">
+                                check_circle
+                            </span>
+                            {item}
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        <div class="flex items-end justify-between border-t border-border pt-4">
+            <div>
+                {
+                    originalPrice && (
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground line-through">
+                            {originalPrice}
+                        </p>
+                    )
+                }
+                <p class="font-display text-2xl text-primary">{price}</p>
+            </div>
+            <a
+                href={ctaHref}
+                class="border border-primary bg-primary px-4 py-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-primary-foreground transition hover:opacity-90"
+            >
+                {ctaLabel}
+            </a>
+        </div>
+    </div>
+</article>

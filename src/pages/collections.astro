@@ -1,0 +1,129 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/homeix/PageHero.astro";
+import Container from "@/components/homeix/Container.astro";
+import FilterTabs from "@/components/react/FilterTabs.tsx";
+
+const allProducts = await getCollection("products");
+
+const serialized = allProducts.map((p) => ({
+    slug: p.data.slug,
+    title: p.data.title,
+    price: p.data.price,
+    category: p.data.category,
+    coverImageSrc: p.data.coverImage,
+}));
+---
+
+<BaseLayout
+    title="Collections"
+    description="Explore our full range of handcrafted furniture, direct from our Nilambur studio."
+>
+    <PageHero
+        eyebrow="Our Collections"
+        title="Every Piece, A Statement."
+        subtitle="Explore our full range of handcrafted furniture, direct from our Nilambur studio."
+    />
+
+    <section class="py-12 md:py-16">
+        <Container>
+            <FilterTabs products={serialized} client:load />
+        </Container>
+    </section>
+
+    <section class="py-20 md:py-28 border-t border-border">
+        <Container>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <p
+                            class="text-[11px] uppercase tracking-[0.35em] text-primary"
+                        >
+                            The Heritage Series
+                        </p>
+                        <h2
+                            class="mt-4 font-display text-3xl md:text-5xl text-foreground"
+                        >
+                            Crafted with Nilambur teak
+                        </h2>
+                    </div>
+                    <p class="text-base text-muted-foreground max-w-md">
+                        A nod to traditional Nilambur craftsmanship, reimagined
+                        for the modern sanctuary. Each piece features solid,
+                        ethically sourced timber with deep, rich grains.
+                    </p>
+                    <a
+                        href="/contact"
+                        class="self-start px-6 py-3 border border-primary bg-primary text-primary-foreground text-[11px] font-semibold tracking-[0.2em] uppercase hover:opacity-90 transition"
+                    >
+                        Explore Heritage
+                    </a>
+                </div>
+                <div
+                    class="border border-border bg-card aspect-4/3 overflow-hidden"
+                >
+                    <img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_OYNvMn-PSdBvMdrtllIX5WzMl-CDOceHKONkWLvrJL42fMN8pzjOoGuGWt1iUaf_Q2X7w46bpqdMAS_po_c_eNtjWQnbsyD8A5e4kiUA024xnQIgDfIHKQYm5s2RNgbE13rwAnEwJeAkWexR9eZnCMLpSkS4_CZmQ7ZC7FtAhmOc_D7RbUFHVeQTsTna8UkajVDPxCu1RVG__PyC2wxjykttskl0QzoRupC0OG6jN_EJCKCyBOhdSF0ZEtjYI62ppBGscX6TVHjb"
+                        alt="Heritage collection"
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="py-20 md:py-28">
+        <Container>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {
+                    [
+                        {
+                            label: "Sofa Sets",
+                            count: 12,
+                            filter: "living-room",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCOrWdqTFCj5x7ym_ZfnEgClUw398pBmN5g8X30VsnD42Hhn8CYuk6sMXOOXcYLzmrMLwVfONkp10XjPDu5LQ2HQj1RVIUrQHciQ7z6vEn-BERMx9IDAkhXQl82xPimXdKuewl_yuyA7UjV27TJSeO8zbzptJGcaFcNKIEcIQatlxrI1K9a5H3nairv0E2I4rbX9Hbua0iJ7nhrMU4FcRfsUz-Ecfj7JwASDoBfP15_zrk4bLBJPJJGWciljSQnwci5ex97nr3A3N-C",
+                        },
+                        {
+                            label: "Dining",
+                            count: 8,
+                            filter: "dining",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBkGizUFx7188_pfMZRHmAfb6Y1ESpK9ajQH74oZYqHK_oeQzuHDRbTvgKn_lMfTPIOchlyBzAEBmJrCtbFMCeHDHRIJbFvVAlYVWcOvefhFofWHNaxzPGgXM4WZ67Si3irKJOf6lw-jfd0Wseo48M1l2kM3CJIAnqTftIF3DYngX4dsqNPqfokBSV9gM-ETAKlaJZ8iFhPY5AUmlIzjDfzr3fz9XdZdjtS1bPqQWdZH49269mWGS-GfMw6x9kqnVIX_6uMjMelNxT0",
+                        },
+                        {
+                            label: "Bedroom",
+                            count: 15,
+                            filter: "bedroom",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwN8MqFADBhskbTq9Q9UUz6iJsWsC9r55aBoSd1RztndqGspBm_rIjC4C8XWSntskgjMfHeroG6f7i54_BeNApKPW1dqCQYTzHtwBPQV5JPpNyPaIOJBqglPmNUeT7bXowNQxIJ7w4EXI_QaJNhflu9ABBp3hjEF2DWMdS7IjhkNvl4hgSl84slbgqQoHzOIuCLUddvf4yM2vOjOS3Mh3VXRiFPWEbiq6SF6N339uVYE77kwybJotZnrL00Vt0iUONOPPSVlAOXboW",
+                        },
+                    ].map((cat) => (
+                        <div class="group relative overflow-hidden border border-border bg-card aspect-4/5 flex items-end">
+                            <img
+                                src={cat.image}
+                                alt={cat.label}
+                                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                            <div class="absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent" />
+                            <div class="relative z-10 p-6 w-full">
+                                <h3 class="font-display text-2xl text-foreground">
+                                    {cat.label}
+                                </h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-1">
+                                    {cat.count} Concepts
+                                </p>
+                                <a
+                                    href={`/collections?filter=${cat.filter}`}
+                                    class="mt-4 inline-flex items-center px-4 py-2 border border-primary text-primary text-[10px] font-semibold tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                                >
+                                    View Collection
+                                </a>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </Container>
+    </section>
+</BaseLayout>

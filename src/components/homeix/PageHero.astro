@@ -1,0 +1,80 @@
+---
+import Container from "./Container.astro";
+
+interface Cta {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    subtitle?: string;
+    image?: string;
+    cta?: Cta;
+    align?: "left" | "center";
+}
+
+const { eyebrow, title, subtitle, image, cta, align = "center" } = Astro.props;
+
+const alignment =
+    align === "left" ? "items-start text-left" : "items-center text-center";
+const subtitleAlign = align === "center" ? "mx-auto" : "";
+---
+
+<section
+    class:list={[
+        "relative overflow-hidden",
+        image ? "min-h-[60vh] flex items-center" : "py-16 md:py-24",
+    ]}
+>
+    {
+        image && (
+            <>
+                <img
+                    src={image}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover"
+                    loading="eager"
+                />
+                <div class="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
+            </>
+        )
+    }
+
+    <Container class={`relative z-10 ${image ? "py-20 md:py-28" : ""}`}>
+        <div class:list={["flex flex-col gap-4", alignment]}>
+            {
+                eyebrow && (
+                    <span class="text-[11px] uppercase tracking-[0.35em] text-primary">
+                        {eyebrow}
+                    </span>
+                )
+            }
+            <h1
+                class="font-display text-4xl md:text-6xl lg:text-7xl text-foreground leading-tight"
+            >
+                {title}
+            </h1>
+            {
+                subtitle && (
+                    <p
+                        class={`text-base md:text-lg text-muted-foreground max-w-2xl ${subtitleAlign}`}
+                    >
+                        {subtitle}
+                    </p>
+                )
+            }
+            {
+                cta && (
+                    <a
+                        href={cta.href}
+                        class="inline-flex items-center justify-center border border-primary bg-primary px-6 py-3 text-[11px] font-semibold tracking-[0.2em] uppercase text-primary-foreground transition hover:opacity-90"
+                    >
+                        {cta.label}
+                    </a>
+                )
+            }
+        </div>
+    </Container>
+</section>
