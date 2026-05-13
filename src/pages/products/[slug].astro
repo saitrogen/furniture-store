@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import products from "@/content/data/new/product.json";
+import ProductCard from "@/components/ProductCard.astro";
+import { formatPrice, getProducts, getWhatsAppUrl, slugify } from "@/lib/catalog";
 
 export async function getStaticPaths() {
+  const products = getProducts();
+
   return products.map((product) => ({
     params: { slug: product.slug },
     props: { product },
@@ -10,33 +13,51 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const products = getProducts();
+const relatedProducts = products
+  .filter((item) => item.slug !== product.slug && item.department === product.department)
+  .slice(0, 3);
+const enquiryUrl = getWhatsAppUrl(
+  `Hi HOMEIX, I would like to enquire about ${product.name} (${product.id}).`
+);
 ---
 
 <BaseLayout title={product.name} description={`${product.name} in ${product.department} by HOMEIX.`}>
-  <section class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-    <a href="/products?page=1" class="mb-6 inline-flex items-center text-sm text-primary hover:underline">
-      ← Back to products
+  <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <a href={`/collection/${slugify(product.department)}`} class="inline-flex items-center text-sm font-medium text-primary hover:underline">
+      ← Back to {product.department}
     </a>
 
-    <div class="grid grid-cols-1 gap-8 rounded-xl border border-border bg-card p-4 sm:p-6 lg:grid-cols-2">
-      <div class="overflow-hidden rounded-lg bg-muted">
+    <div class="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="overflow-hidden rounded-lg border border-border bg-muted">
         <img src={product.image} alt={product.name} class="h-full w-full object-cover" />
       </div>
 
       <div class="flex flex-col gap-4">
         <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
-        <h1 class="text-3xl font-semibold text-foreground sm:text-4xl">{product.name}</h1>
-        <p class="text-xl font-semibold text-foreground">${product.price.toLocaleString("en-US")}</p>
-        <p class="text-sm text-muted-foreground">Rating: ★ {product.rating}</p>
+        <h1 class="text-5xl font-semibold leading-none text-foreground sm:text-6xl">{product.name}</h1>
+        <p class="max-w-xl text-lg leading-8 text-muted-foreground">
+          A selected {product.type.toLowerCase()} from the HOMEIX catalogue. Send a WhatsApp enquiry for availability, finishes, delivery, and custom options.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 border-y border-border py-5">
+          <p class="text-2xl font-semibold text-foreground">{formatPrice(product.price)}</p>
+          <p class="text-sm text-muted-foreground">★ {product.rating} rating</p>
+        </div>
+
+        <a
+          href={enquiryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:w-fit"
+        >
+          WhatsApp enquiry
+        </a>
 
         <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
           <div class="rounded-md border border-border bg-background p-3">
-            <dt class="text-muted-foreground">ID</dt>
+            <dt class="text-muted-foreground">Product ID</dt>
             <dd class="font-medium text-foreground">{product.id}</dd>
-          </div>
-          <div class="rounded-md border border-border bg-background p-3">
-            <dt class="text-muted-foreground">Slug</dt>
-            <dd class="font-medium text-foreground">{product.slug}</dd>
           </div>
           <div class="rounded-md border border-border bg-background p-3">
             <dt class="text-muted-foreground">Category</dt>
@@ -54,4 +75,19 @@ const { product } = Astro.props;
       </div>
     </div>
   </section>
+
+  {relatedProducts.length > 0 && (
+    <section class="border-t border-border bg-card/55">
+      <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="mb-8">
+          <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Related</p>
+          <h2 class="text-4xl font-semibold text-foreground">More from {product.department}</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {relatedProducts.map((item) => <ProductCard product={item} />)}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

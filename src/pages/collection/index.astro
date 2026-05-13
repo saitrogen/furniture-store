@@ -1,0 +1,69 @@
+---
+import ProductCard from "@/components/ProductCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getDepartments, getProducts, getWhatsAppUrl } from "@/lib/catalog";
+
+const products = getProducts();
+const departments = getDepartments();
+---
+
+<BaseLayout title="Collection" description="Browse the full HOMEIX furniture and decor collection.">
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+      <div>
+        <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">Collection</p>
+        <h1 class="mt-3 text-5xl font-semibold leading-none text-foreground sm:text-6xl">All furniture</h1>
+        <p class="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
+          Explore every product, then send a WhatsApp enquiry from the piece you like.
+        </p>
+        <a
+          href={getWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+        >
+          WhatsApp enquiry
+        </a>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {departments.slice(0, 4).map((department) => (
+          <a href={`/collection/${department.slug}`} class="group overflow-hidden rounded-lg border border-border bg-card">
+            <div class="aspect-16/10 overflow-hidden bg-muted">
+              <img src={department.image} alt={department.name} loading="lazy" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+            </div>
+            <div class="p-4">
+              <h2 class="text-xl font-semibold text-foreground">{department.name}</h2>
+              <p class="text-sm text-muted-foreground">{department.count} products</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-border bg-card/55">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap gap-2">
+        {departments.map((department) => (
+          <a href={`/collection/${department.slug}`} class="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground hover:bg-accent">
+            {department.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mb-8 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">{products.length} products</p>
+        <h2 class="text-4xl font-semibold text-foreground">Browse everything</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </section>
+</BaseLayout>

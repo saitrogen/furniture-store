@@ -1,0 +1,39 @@
+---
+import ProductCard from "@/components/ProductCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getDepartments, getProductsByType } from "@/lib/catalog";
+
+export function getStaticPaths() {
+  return getDepartments().flatMap((department) =>
+    department.types.map((type) => ({
+      params: { department: department.slug, type: type.slug },
+      props: {
+        department,
+        type,
+        products: getProductsByType(department.slug, type.slug),
+      },
+    }))
+  );
+}
+
+const { department, type, products } = Astro.props;
+---
+
+<BaseLayout title={type.name} description={`Explore ${type.name} in ${department.name} from HOMEIX.`}>
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <a href={`/collection/${department.slug}`} class="text-sm font-medium text-primary hover:underline">← {department.name}</a>
+    <div class="mt-8 max-w-3xl">
+      <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">{department.name}</p>
+      <h1 class="mt-3 text-5xl font-semibold leading-none text-foreground sm:text-6xl">{type.name}</h1>
+      <p class="mt-5 text-lg leading-8 text-muted-foreground">
+        {products.length} matching products. Open any item to send a pre-filled WhatsApp enquiry.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </section>
+</BaseLayout>

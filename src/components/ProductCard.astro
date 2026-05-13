@@ -1,0 +1,49 @@
+---
+import { formatPrice, getWhatsAppUrl, type Product } from "@/lib/catalog";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const enquiryUrl = getWhatsAppUrl(
+  `Hi HOMEIX, I would like to enquire about ${product.name} (${product.id}).`
+);
+---
+
+<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card">
+  <a href={`/products/${product.slug}`} class="block aspect-4/3 overflow-hidden bg-muted">
+    <img
+      src={product.image}
+      alt={product.name}
+      loading="lazy"
+      class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+    />
+  </a>
+
+  <div class="flex flex-1 flex-col gap-3 p-4">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.type}</p>
+        <h2 class="mt-1 text-xl font-semibold leading-tight text-foreground">
+          <a href={`/products/${product.slug}`} class="hover:text-primary">{product.name}</a>
+        </h2>
+      </div>
+      <p class="shrink-0 text-sm text-muted-foreground">★ {product.rating}</p>
+    </div>
+
+    <p class="text-sm text-muted-foreground">{product.department}</p>
+
+    <div class="mt-auto flex items-center justify-between gap-3 pt-2">
+      <p class="font-semibold text-foreground">{formatPrice(product.price)}</p>
+      <a
+        href={enquiryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-10 items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+      >
+        WhatsApp enquiry
+      </a>
+    </div>
+  </div>
+</article>

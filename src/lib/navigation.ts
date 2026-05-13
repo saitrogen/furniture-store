@@ -1,8 +1,5 @@
 import products from "@/content/data/new/product.json";
-
-function slugify(str: string) {
-  return str.toLowerCase().replaceAll(" ", "-");
-}
+import { slugify } from "@/lib/catalog";
 
 type NavType = {
   name: string;

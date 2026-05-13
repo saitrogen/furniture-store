@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getWhatsAppUrl, site } from "@/lib/catalog";
+---
+
+<BaseLayout title="About" description="Learn about HOMEIX furniture and showroom service.">
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">About {site.name}</p>
+        <h1 class="mt-3 text-5xl font-semibold leading-none text-foreground sm:text-6xl">Furniture selected for everyday living.</h1>
+      </div>
+      <div class="flex flex-col gap-6 text-lg leading-8 text-muted-foreground">
+        <p>
+          HOMEIX is a static online showcase for furniture, lighting, and home decor. The catalogue is built for browsing first, then starting a direct WhatsApp conversation when a piece feels right.
+        </p>
+        <p>
+          Ask about materials, finishes, measurements, delivery, installation, availability, and custom options. The site keeps the buying path simple: no cart, no checkout, just clear product pages and direct enquiry.
+        </p>
+        <a
+          href={getWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 w-fit items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+        >
+          WhatsApp enquiry
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-border bg-card/55">
+    <div class="mx-auto grid max-w-7xl gap-4 px-4 py-12 sm:grid-cols-3 sm:px-6 lg:px-8">
+      {["Curated catalogue", "Direct conversation", "Room-wise browsing"].map((item) => (
+        <div class="rounded-lg border border-border bg-background p-5">
+          <h2 class="text-xl font-semibold text-foreground">{item}</h2>
+          <p class="mt-2 text-sm leading-6 text-muted-foreground">
+            Product information stays clean and practical so customers can shortlist quickly.
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
