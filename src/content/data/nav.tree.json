@@ -1,0 +1,128 @@
+{
+  "Living Room Furniture": {
+    "count": 5,
+    "types": {
+      "Sofas": {
+        "count": 1,
+        "ids": [
+          "P001"
+        ]
+      },
+      "Sectionals": {
+        "count": 1,
+        "ids": [
+          "P002"
+        ]
+      },
+      "Coffee Tables": {
+        "count": 1,
+        "ids": [
+          "P003"
+        ]
+      },
+      "Accent Chairs": {
+        "count": 1,
+        "ids": [
+          "P004"
+        ]
+      },
+      "TV Stands": {
+        "count": 1,
+        "ids": [
+          "P005"
+        ]
+      }
+    }
+  },
+  "Bedroom Furniture": {
+    "count": 3,
+    "types": {
+      "Beds": {
+        "count": 1,
+        "ids": [
+          "P006"
+        ]
+      },
+      "Dressers": {
+        "count": 1,
+        "ids": [
+          "P007"
+        ]
+      },
+      "Nightstands": {
+        "count": 1,
+        "ids": [
+          "P008"
+        ]
+      }
+    }
+  },
+  "Kitchen & Dining Furniture": {
+    "count": 2,
+    "types": {
+      "Dining Tables": {
+        "count": 1,
+        "ids": [
+          "P009"
+        ]
+      },
+      "Dining Chairs": {
+        "count": 1,
+        "ids": [
+          "P010"
+        ]
+      }
+    }
+  },
+  "Office Furniture": {
+    "count": 2,
+    "types": {
+      "Desks": {
+        "count": 1,
+        "ids": [
+          "P011"
+        ]
+      },
+      "Office Chairs": {
+        "count": 1,
+        "ids": [
+          "P012"
+        ]
+      }
+    }
+  },
+  "Storage Furniture": {
+    "count": 2,
+    "types": {
+      "Bookcases": {
+        "count": 1,
+        "ids": [
+          "P013"
+        ]
+      },
+      "Sideboards": {
+        "count": 1,
+        "ids": [
+          "P014"
+        ]
+      }
+    }
+  },
+  "Outdoor Furniture": {
+    "count": 2,
+    "types": {
+      "Outdoor Dining Sets": {
+        "count": 1,
+        "ids": [
+          "P015"
+        ]
+      },
+      "Outdoor Sofa Sets": {
+        "count": 1,
+        "ids": [
+          "P016"
+        ]
+      }
+    }
+  }
+}

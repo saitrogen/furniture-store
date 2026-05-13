@@ -1,0 +1,588 @@
+{
+  "P001": {
+    "product": {
+      "id": "P001",
+      "name": "Oslo 3-Seat Linen Sofa",
+      "sku": "NN-SOF-001",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Sofas"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "price": {
+        "current": 899.0,
+        "original": 1099.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 200.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 342
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "upholstery_material": "Linen Blend",
+      "upholstery_color": "Oatmeal",
+      "frame_material": "Solid Beech"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P002": {
+    "product": {
+      "id": "P002",
+      "name": "Bergen Modular Sectional",
+      "sku": "NN-SEC-002",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Sectionals"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800"
+      ],
+      "price": {
+        "current": 1649.0,
+        "original": 1999.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 350.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 187
+      }
+    },
+    "product_details": {
+      "upholstery_material": "Velvet",
+      "upholstery_color": "Dusty Rose"
+    },
+    "product_care": {
+      "level_of_assembly": "Moderate Assembly"
+    }
+  },
+  "P003": {
+    "product": {
+      "id": "P003",
+      "name": "Fjord Round Marble Coffee Table",
+      "sku": "NN-CTB-003",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Coffee Tables"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=800"
+      ],
+      "price": {
+        "current": 449.0,
+        "original": 449.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 98
+      }
+    },
+    "product_details": {
+      "table_top_material": "Marble",
+      "table_base_color": "Gold"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P004": {
+    "product": {
+      "id": "P004",
+      "name": "Halden Accent Armchair",
+      "sku": "NN-ACH-004",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Accent Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
+      ],
+      "price": {
+        "current": 379.0,
+        "original": 449.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 70.0,
+          "percent": 16
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 514
+      }
+    },
+    "product_details": {
+      "upholstery_material": "Boucle Fabric",
+      "upholstery_color": "Cream White",
+      "frame_material": "Solid Walnut"
+    },
+    "product_care": {
+      "level_of_assembly": "No Assembly Required"
+    }
+  },
+  "P005": {
+    "product": {
+      "id": "P005",
+      "name": "Lund Solid Oak TV Stand",
+      "sku": "NN-TVS-005",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "TV Stands"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "price": {
+        "current": 529.0,
+        "original": 649.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 120.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.5,
+        "count": 231
+      }
+    },
+    "product_details": {
+      "primary_material": "Solid Oak"
+    },
+    "product_care": {
+      "level_of_assembly": "Full Assembly Needed"
+    }
+  },
+  "P006": {
+    "product": {
+      "id": "P006",
+      "name": "Nora Upholstered Platform Bed",
+      "sku": "NN-BED-006",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Beds"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"
+      ],
+      "price": {
+        "current": 799.0,
+        "original": 999.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 200.0,
+          "percent": 20
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 622
+      }
+    },
+    "product_details": {
+      "upholstery_material": "Performance Fabric",
+      "upholstery_color": "Charcoal Gray"
+    },
+    "product_care": {
+      "level_of_assembly": "Full Assembly Needed"
+    }
+  },
+  "P007": {
+    "product": {
+      "id": "P007",
+      "name": "Elsa 6-Drawer Solid Wood Dresser",
+      "sku": "NN-DRS-007",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Dressers"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800"
+      ],
+      "price": {
+        "current": 649.0,
+        "original": 649.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 289
+      }
+    },
+    "product_details": {
+      "primary_material": "Solid Birch"
+    },
+    "product_care": {
+      "level_of_assembly": "Full Assembly Needed"
+    }
+  },
+  "P008": {
+    "product": {
+      "id": "P008",
+      "name": "Sigrid Walnut Nightstand",
+      "sku": "NN-NST-008",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Nightstands"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"
+      ],
+      "price": {
+        "current": 189.0,
+        "original": 229.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 40.0,
+          "percent": 17
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 156
+      }
+    },
+    "product_details": {
+      "primary_material": "Solid Walnut"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P009": {
+    "product": {
+      "id": "P009",
+      "name": "Dansk Extendable Dining Table",
+      "sku": "NN-DTB-009",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Kitchen & Dining Furniture",
+        "type": "Dining Tables"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=800"
+      ],
+      "price": {
+        "current": 1199.0,
+        "original": 1499.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 300.0,
+          "percent": 20
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 403
+      }
+    },
+    "product_details": {
+      "table_top_material": "Solid Oak"
+    },
+    "product_care": {
+      "level_of_assembly": "Moderate Assembly"
+    }
+  },
+  "P010": {
+    "product": {
+      "id": "P010",
+      "name": "Aero Upholstered Dining Chair Set",
+      "sku": "NN-DCH-010",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Kitchen & Dining Furniture",
+        "type": "Dining Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=800"
+      ],
+      "price": {
+        "current": 259.0,
+        "original": 319.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 60.0,
+          "percent": 19
+        }
+      },
+      "reviews": {
+        "rating": 4.5,
+        "count": 318
+      }
+    },
+    "product_details": {
+      "upholstery_material": "Faux Leather",
+      "upholstery_color": "Cognac"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P011": {
+    "product": {
+      "id": "P011",
+      "name": "Arbor Solid Wood Writing Desk",
+      "sku": "NN-DSK-011",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Office Furniture",
+        "type": "Desks"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800"
+      ],
+      "price": {
+        "current": 549.0,
+        "original": 549.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 172
+      }
+    },
+    "product_details": {
+      "primary_material": "Solid Acacia"
+    },
+    "product_care": {
+      "level_of_assembly": "Moderate Assembly"
+    }
+  },
+  "P012": {
+    "product": {
+      "id": "P012",
+      "name": "Flex Ergonomic Mesh Office Chair",
+      "sku": "NN-OCH-012",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Office Furniture",
+        "type": "Office Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1589384267710-7a170981ca78?w=800"
+      ],
+      "price": {
+        "current": 429.0,
+        "original": 529.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 100.0,
+          "percent": 19
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 891
+      }
+    },
+    "product_details": {
+      "seat_material": "Foam + Mesh"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P013": {
+    "product": {
+      "id": "P013",
+      "name": "Hagen 5-Shelf Bookcase",
+      "sku": "NN-BKC-013",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Storage Furniture",
+        "type": "Bookcases"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=800"
+      ],
+      "price": {
+        "current": 329.0,
+        "original": 399.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 70.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 445
+      }
+    },
+    "product_details": {
+      "primary_material": "Engineered Wood"
+    },
+    "product_care": {
+      "level_of_assembly": "Full Assembly Needed"
+    }
+  },
+  "P014": {
+    "product": {
+      "id": "P014",
+      "name": "Tora Cane Door Sideboard",
+      "sku": "NN-SDB-014",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Storage Furniture",
+        "type": "Sideboards"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=800"
+      ],
+      "price": {
+        "current": 879.0,
+        "original": 879.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 94
+      }
+    },
+    "product_details": {
+      "primary_material": "Solid Ash"
+    },
+    "product_care": {
+      "level_of_assembly": "Minimal Assembly"
+    }
+  },
+  "P015": {
+    "product": {
+      "id": "P015",
+      "name": "Strand Teak Outdoor Dining Set",
+      "sku": "NN-ODS-015",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Outdoor Furniture",
+        "type": "Outdoor Dining Sets"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+      ],
+      "price": {
+        "current": 1899.0,
+        "original": 2299.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 400.0,
+          "percent": 17
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 211
+      }
+    },
+    "product_details": {
+      "primary_material": "Grade A Teak"
+    },
+    "product_care": {
+      "level_of_assembly": "Moderate Assembly"
+    }
+  },
+  "P016": {
+    "product": {
+      "id": "P016",
+      "name": "Mila Rattan Outdoor Sofa Set",
+      "sku": "NN-OSS-016",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Outdoor Furniture",
+        "type": "Outdoor Sofa Sets"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+      ],
+      "price": {
+        "current": 1349.0,
+        "original": 1599.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 250.0,
+          "percent": 16
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 138
+      }
+    },
+    "product_details": {
+      "frame_material": "Powder-Coated Aluminum",
+      "weave_material": "PE Rattan"
+    },
+    "product_care": {
+      "level_of_assembly": "Moderate Assembly"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import products from "@/content/data/new/product.json";
+
+const PAGE_SIZE = 12;
+const totalProducts = products.length;
+const totalPages = Math.max(1, Math.ceil(totalProducts / PAGE_SIZE));
+---
+
+<BaseLayout title="All Products" description="Browse our complete furniture and home collection.">
+  <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">Collection</p>
+        <h1 class="text-3xl font-semibold text-foreground sm:text-4xl">All Products</h1>
+      </div>
+      <p class="text-sm text-muted-foreground">
+        <span id="range-label">Showing 1–12</span>
+        of {totalProducts}
+      </p>
+    </div>
+
+    <div id="products-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product, index) => (
+        <article data-product-index={index + 1} class="group overflow-hidden rounded-lg border border-border bg-card">
+          <a href={`/products/${product.slug}`} class="block aspect-4/3 overflow-hidden bg-muted">
+            <img
+              src={product.image}
+              alt={product.name}
+              loading="lazy"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          </a>
+
+          <div class="flex flex-col gap-2 p-4">
+            <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
+            <h2 class="text-lg font-medium text-foreground">
+              <a href={`/products/${product.slug}`} class="hover:text-primary">{product.name}</a>
+            </h2>
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-base font-semibold text-foreground">${product.price.toLocaleString("en-US")}</p>
+              <p class="text-sm text-muted-foreground">★ {product.rating}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <nav id="pagination" aria-label="Pagination" class="mt-8 flex flex-wrap items-center justify-center gap-2">
+      <a id="prev-link" href="/products?page=1" class="rounded-md border border-border px-3 py-2 text-sm text-foreground hover:bg-accent">
+        Previous
+      </a>
+
+      {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((page) => (
+        <a
+          href={`/products?page=${page}`}
+          data-page-link={page}
+          class="rounded-md border border-border px-3 py-2 text-sm text-foreground hover:bg-accent"
+        >
+          {page}
+        </a>
+      ))}
+
+      <a id="next-link" href={`/products?page=${totalPages}`} class="rounded-md border border-border px-3 py-2 text-sm text-foreground hover:bg-accent">
+        Next
+      </a>
+    </nav>
+  </section>
+
+  <script is:inline define:vars={{ PAGE_SIZE, totalPages, totalProducts }}>
+    const params = new URLSearchParams(window.location.search);
+    const requestedPage = Number(params.get("page") || "1");
+    const currentPage = Number.isFinite(requestedPage)
+      ? Math.min(Math.max(1, Math.trunc(requestedPage)), totalPages)
+      : 1;
+
+    if (String(currentPage) !== (params.get("page") || "1")) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("page", String(currentPage));
+      window.history.replaceState({}, "", url);
+    }
+
+    const start = (currentPage - 1) * PAGE_SIZE + 1;
+    const end = Math.min(currentPage * PAGE_SIZE, totalProducts);
+
+    const rangeLabel = document.getElementById("range-label");
+    if (rangeLabel) {
+      rangeLabel.textContent = `Showing ${start}–${end}`;
+    }
+
+    const cards = document.querySelectorAll("[data-product-index]");
+    cards.forEach((card) => {
+      const index = Number(card.getAttribute("data-product-index"));
+      const isVisible = index >= start && index <= end;
+      card.classList.toggle("hidden", !isVisible);
+    });
+
+    const prevLink = document.getElementById("prev-link");
+    const nextLink = document.getElementById("next-link");
+    const prevPage = Math.max(1, currentPage - 1);
+    const nextPage = Math.min(totalPages, currentPage + 1);
+
+    if (prevLink instanceof HTMLAnchorElement) {
+      prevLink.href = `/products?page=${prevPage}`;
+      prevLink.setAttribute("aria-disabled", String(currentPage === 1));
+      prevLink.classList.toggle("pointer-events-none", currentPage === 1);
+      prevLink.classList.toggle("opacity-50", currentPage === 1);
+    }
+
+    if (nextLink instanceof HTMLAnchorElement) {
+      nextLink.href = `/products?page=${nextPage}`;
+      nextLink.setAttribute("aria-disabled", String(currentPage === totalPages));
+      nextLink.classList.toggle("pointer-events-none", currentPage === totalPages);
+      nextLink.classList.toggle("opacity-50", currentPage === totalPages);
+    }
+
+    const pageLinks = document.querySelectorAll("[data-page-link]");
+    pageLinks.forEach((link) => {
+      const page = Number(link.getAttribute("data-page-link"));
+      if (page === currentPage) {
+        link.classList.add("bg-primary", "text-primary-foreground", "border-primary");
+        link.setAttribute("aria-current", "page");
+      }
+    });
+  </script>
+</BaseLayout>

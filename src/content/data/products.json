@@ -1,0 +1,1313 @@
+[
+  {
+    "product": {
+      "id": "P001",
+      "name": "Oslo 3-Seat Linen Sofa",
+      "sku": "NN-SOF-001",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Sofas"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "price": {
+        "current": 899.0,
+        "original": 1099.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 200.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 342
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "upholstery_material": "Linen Blend",
+      "upholstery_color": "Oatmeal",
+      "frame_material": "Solid Beech",
+      "leg_color": "Natural Wood",
+      "arm_type": "Track Arm",
+      "pattern": "Solid Color",
+      "nailhead_trim": "Without Nailhead Trim"
+    },
+    "features": {
+      "seat_style": "Single Cushion Seat",
+      "back_style": "Loose Back",
+      "storage_included": "Storage Not Included",
+      "slipcovered": "Without Slipcover",
+      "ottoman_included": "Without Ottoman",
+      "skirted": "Non-Skirted"
+    },
+    "variants": [
+      {
+        "size_label": "72\"L x 34\"W x 33\"H",
+        "dimensions": {
+          "length": {
+            "inches": 72,
+            "cm": 183
+          },
+          "width": {
+            "inches": 34,
+            "cm": 86
+          },
+          "height": {
+            "inches": 33,
+            "cm": 84
+          }
+        },
+        "weight": {
+          "lbs": 88,
+          "kg": 40
+        },
+        "seating_capacity": 2
+      },
+      {
+        "size_label": "85\"L x 34\"W x 33\"H",
+        "dimensions": {
+          "length": {
+            "inches": 85,
+            "cm": 216
+          },
+          "width": {
+            "inches": 34,
+            "cm": 86
+          },
+          "height": {
+            "inches": 33,
+            "cm": 84
+          }
+        },
+        "weight": {
+          "lbs": 102,
+          "kg": 46
+        },
+        "seating_capacity": 3
+      }
+    ],
+    "shared_dimensions": {
+      "seat_height_floor_to_seat": {
+        "inches": 18,
+        "cm": 46
+      },
+      "seat_depth_front_to_back": {
+        "inches": 22,
+        "cm": 56
+      }
+    },
+    "product_care": {
+      "care_instruction": "Spot clean with a damp cloth. Professional cleaning recommended.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P002",
+      "name": "Bergen Modular Sectional \u2013 L-Shape",
+      "sku": "NN-SEC-002",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Sectionals"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800"
+      ],
+      "price": {
+        "current": 1649.0,
+        "original": 1999.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 350.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 187
+      }
+    },
+    "product_details": {
+      "style": "Modern",
+      "upholstery_material": "Velvet",
+      "upholstery_color": "Dusty Rose",
+      "frame_material": "Engineered Wood + Steel",
+      "leg_color": "Matte Black",
+      "arm_type": "Slope Arm",
+      "pattern": "Solid Color"
+    },
+    "features": {
+      "seat_style": "Multi Cushion Seat",
+      "back_style": "Attached Back",
+      "chaise_included": "Chaise Included",
+      "reversible_chaise": "Yes",
+      "storage_included": "Storage Not Included",
+      "slipcovered": "Without Slipcover"
+    },
+    "variants": [
+      {
+        "size_label": "102\"L x 65\"W x 32\"H",
+        "dimensions": {
+          "length": {
+            "inches": 102,
+            "cm": 259
+          },
+          "width": {
+            "inches": 65,
+            "cm": 165
+          },
+          "height": {
+            "inches": 32,
+            "cm": 81
+          }
+        },
+        "weight": {
+          "lbs": 180,
+          "kg": 82
+        },
+        "seating_capacity": 4
+      },
+      {
+        "size_label": "118\"L x 65\"W x 32\"H",
+        "dimensions": {
+          "length": {
+            "inches": 118,
+            "cm": 300
+          },
+          "width": {
+            "inches": 65,
+            "cm": 165
+          },
+          "height": {
+            "inches": 32,
+            "cm": 81
+          }
+        },
+        "weight": {
+          "lbs": 210,
+          "kg": 95
+        },
+        "seating_capacity": 5
+      }
+    ],
+    "shared_dimensions": {
+      "seat_height_floor_to_seat": {
+        "inches": 17,
+        "cm": 43
+      },
+      "seat_depth_front_to_back": {
+        "inches": 24,
+        "cm": 61
+      }
+    },
+    "product_care": {
+      "care_instruction": "Vacuum regularly. Blot spills immediately with a dry cloth.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Moderate Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P003",
+      "name": "Fjord Round Marble Coffee Table",
+      "sku": "NN-CTB-003",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Coffee Tables"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=800"
+      ],
+      "price": {
+        "current": 449.0,
+        "original": 449.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 98
+      }
+    },
+    "product_details": {
+      "style": "Modern Glam",
+      "table_top_material": "Marble",
+      "table_base_material": "Iron",
+      "table_base_color": "Gold",
+      "table_top_color": "White/Gray Veined",
+      "top_shape": "Round",
+      "upholstered": "Non-Upholstered",
+      "tray_top": "Not Tray Top"
+    },
+    "features": {
+      "foldable": "Fixed",
+      "storage_included": "Storage Not Included",
+      "drawers_included": "No Drawers",
+      "lift_top": "Without Lift Top",
+      "extendable_collapsible_table": "Non-Extendable"
+    },
+    "shared_dimensions": {
+      "overall_diameter": {
+        "inches": 36,
+        "cm": 91
+      },
+      "overall_height": {
+        "inches": 17,
+        "cm": 43
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a soft damp cloth. Avoid harsh chemicals on marble.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P004",
+      "name": "Halden Accent Armchair \u2013 Boucle",
+      "sku": "NN-ACH-004",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "Accent Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
+      ],
+      "price": {
+        "current": 379.0,
+        "original": 449.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 70.0,
+          "percent": 16
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 514
+      }
+    },
+    "product_details": {
+      "style": "Contemporary",
+      "upholstery_material": "Boucle Fabric",
+      "upholstery_color": "Cream White",
+      "frame_material": "Solid Walnut",
+      "leg_color": "Walnut Brown",
+      "arm_type": "Curved Arm",
+      "swivel": "Non-Swivel"
+    },
+    "features": {
+      "seat_style": "Single Cushion Seat",
+      "back_style": "Barrel Back",
+      "ottoman_included": "Without Ottoman",
+      "reclining": "Non-Reclining"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 30,
+        "cm": 76
+      },
+      "overall_depth": {
+        "inches": 32,
+        "cm": 81
+      },
+      "overall_height": {
+        "inches": 31,
+        "cm": 79
+      },
+      "seat_height_floor_to_seat": {
+        "inches": 17,
+        "cm": 43
+      }
+    },
+    "product_care": {
+      "care_instruction": "Brush lightly with a soft bristle brush. Spot clean only.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "No Assembly Required"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P005",
+      "name": "Lund Solid Oak TV Stand \u2013 65 inch",
+      "sku": "NN-TVS-005",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Living Room Furniture",
+        "type": "TV Stands & Media Storage"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "price": {
+        "current": 529.0,
+        "original": 649.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 120.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.5,
+        "count": 231
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "primary_material": "Solid Oak",
+      "finish": "Natural Oil",
+      "leg_style": "Tapered Legs",
+      "leg_color": "Natural Oak",
+      "door_style": "Slatted Cane Door"
+    },
+    "features": {
+      "storage_included": "Storage Included",
+      "drawers_included": "2 Drawers Included",
+      "shelves_included": "Adjustable Shelves",
+      "cable_management": "Yes",
+      "max_tv_size_supported": "65 inches"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 63,
+        "cm": 160
+      },
+      "overall_depth": {
+        "inches": 16,
+        "cm": 41
+      },
+      "overall_height": {
+        "inches": 24,
+        "cm": 61
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a dry cloth. Re-oil annually to maintain finish.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Full Assembly Needed"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P006",
+      "name": "Nora Upholstered Platform Bed \u2013 Queen",
+      "sku": "NN-BED-006",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Beds"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"
+      ],
+      "price": {
+        "current": 799.0,
+        "original": 999.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 200.0,
+          "percent": 20
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 622
+      }
+    },
+    "product_details": {
+      "style": "Modern",
+      "upholstery_material": "Performance Fabric",
+      "upholstery_color": "Charcoal Gray",
+      "frame_material": "Engineered Wood",
+      "headboard_style": "Panel Headboard",
+      "leg_color": "Matte Black",
+      "box_spring_required": "No"
+    },
+    "features": {
+      "storage_included": "Storage Not Included",
+      "adjustable_headboard": "No",
+      "upholstered_headboard": "Yes"
+    },
+    "variants": [
+      {
+        "size_label": "Full",
+        "dimensions": {
+          "length": {
+            "inches": 79,
+            "cm": 201
+          },
+          "width": {
+            "inches": 57,
+            "cm": 145
+          }
+        },
+        "weight": {
+          "lbs": 112,
+          "kg": 51
+        }
+      },
+      {
+        "size_label": "Queen",
+        "dimensions": {
+          "length": {
+            "inches": 83,
+            "cm": 211
+          },
+          "width": {
+            "inches": 63,
+            "cm": 160
+          }
+        },
+        "weight": {
+          "lbs": 128,
+          "kg": 58
+        }
+      },
+      {
+        "size_label": "King",
+        "dimensions": {
+          "length": {
+            "inches": 83,
+            "cm": 211
+          },
+          "width": {
+            "inches": 79,
+            "cm": 201
+          }
+        },
+        "weight": {
+          "lbs": 148,
+          "kg": 67
+        }
+      }
+    ],
+    "shared_dimensions": {
+      "overall_height": {
+        "inches": 45,
+        "cm": 114
+      },
+      "floor_to_top_of_rail": {
+        "inches": 12,
+        "cm": 30
+      }
+    },
+    "product_care": {
+      "care_instruction": "Vacuum upholstery monthly. Spot clean with mild detergent.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Full Assembly Needed"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P007",
+      "name": "Elsa 6-Drawer Solid Wood Dresser",
+      "sku": "NN-DRS-007",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Dressers & Chests"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800"
+      ],
+      "price": {
+        "current": 649.0,
+        "original": 649.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 289
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "primary_material": "Solid Birch",
+      "finish": "White Lacquer",
+      "handle_style": "Recessed Integrated Handle",
+      "leg_style": "Tapered",
+      "leg_color": "Natural Birch"
+    },
+    "features": {
+      "number_of_drawers": 6,
+      "soft_close_drawers": "Yes",
+      "anti_tip_hardware": "Included",
+      "felt_lined_drawers": "Yes"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 36,
+        "cm": 91
+      },
+      "overall_depth": {
+        "inches": 19,
+        "cm": 48
+      },
+      "overall_height": {
+        "inches": 52,
+        "cm": 132
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a damp cloth. Avoid excess moisture near the joints.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Full Assembly Needed"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P008",
+      "name": "Sigrid Walnut Nightstand with Drawer",
+      "sku": "NN-NST-008",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Bedroom Furniture",
+        "type": "Nightstands"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"
+      ],
+      "price": {
+        "current": 189.0,
+        "original": 229.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 40.0,
+          "percent": 17
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 156
+      }
+    },
+    "product_details": {
+      "style": "Mid-Century Modern",
+      "primary_material": "Solid Walnut",
+      "finish": "Natural Oil",
+      "leg_style": "Angled Hairpin",
+      "leg_color": "Walnut Brown"
+    },
+    "features": {
+      "number_of_drawers": 1,
+      "open_shelf": "Yes",
+      "soft_close_drawers": "Yes"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 22,
+        "cm": 56
+      },
+      "overall_depth": {
+        "inches": 16,
+        "cm": 41
+      },
+      "overall_height": {
+        "inches": 24,
+        "cm": 61
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a soft dry cloth. Avoid direct sunlight to preserve finish.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P009",
+      "name": "Dansk Extendable Dining Table \u2013 Oak",
+      "sku": "NN-DTB-009",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Kitchen & Dining Furniture",
+        "type": "Dining Tables"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=800"
+      ],
+      "price": {
+        "current": 1199.0,
+        "original": 1499.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 300.0,
+          "percent": 20
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 403
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "table_top_material": "Solid Oak",
+      "table_base_material": "Solid Oak",
+      "finish": "Natural Oil",
+      "top_shape": "Rectangular",
+      "extendable": "Yes \u2013 leaf extension included"
+    },
+    "features": {
+      "foldable": "Fixed",
+      "extendable_collapsible_table": "Extendable",
+      "number_of_extension_leaves": 1,
+      "storage_included": "Storage Not Included"
+    },
+    "variants": [
+      {
+        "size_label": "63\"L x 35\"W (seats 4\u20136)",
+        "dimensions": {
+          "length": {
+            "inches": 63,
+            "cm": 160
+          },
+          "width": {
+            "inches": 35,
+            "cm": 89
+          }
+        },
+        "extended_length": {
+          "inches": 87,
+          "cm": 221
+        }
+      },
+      {
+        "size_label": "79\"L x 35\"W (seats 6\u20138)",
+        "dimensions": {
+          "length": {
+            "inches": 79,
+            "cm": 201
+          },
+          "width": {
+            "inches": 35,
+            "cm": 89
+          }
+        },
+        "extended_length": {
+          "inches": 103,
+          "cm": 262
+        }
+      }
+    ],
+    "shared_dimensions": {
+      "overall_height": {
+        "inches": 30,
+        "cm": 76
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a damp cloth. Re-oil every 6 months for best results.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Moderate Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P010",
+      "name": "Aero Upholstered Dining Chair \u2013 Set of 2",
+      "sku": "NN-DCH-010",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Kitchen & Dining Furniture",
+        "type": "Dining Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=800"
+      ],
+      "price": {
+        "current": 259.0,
+        "original": 319.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 60.0,
+          "percent": 19
+        }
+      },
+      "reviews": {
+        "rating": 4.5,
+        "count": 318
+      }
+    },
+    "product_details": {
+      "style": "Contemporary",
+      "upholstery_material": "Faux Leather",
+      "upholstery_color": "Cognac",
+      "frame_material": "Steel",
+      "leg_color": "Matte Black",
+      "arm_type": "Armless",
+      "set_quantity": 2
+    },
+    "features": {
+      "stackable": "Non-Stackable",
+      "swivel": "Non-Swivel",
+      "upholstered_seat": "Yes",
+      "upholstered_back": "Yes"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 18,
+        "cm": 46
+      },
+      "overall_depth": {
+        "inches": 20,
+        "cm": 51
+      },
+      "overall_height": {
+        "inches": 33,
+        "cm": 84
+      },
+      "seat_height_floor_to_seat": {
+        "inches": 18,
+        "cm": 46
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a damp cloth. Buff dry immediately.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P011",
+      "name": "Arbor Solid Wood Writing Desk",
+      "sku": "NN-DSK-011",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Office Furniture",
+        "type": "Desks"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800"
+      ],
+      "price": {
+        "current": 549.0,
+        "original": 549.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 172
+      }
+    },
+    "product_details": {
+      "style": "Mid-Century Modern",
+      "primary_material": "Solid Acacia",
+      "finish": "Honey Brown",
+      "leg_style": "Hairpin Legs",
+      "leg_color": "Matte Black",
+      "drawer_included": "Yes"
+    },
+    "features": {
+      "storage_included": "Storage Included",
+      "number_of_drawers": 2,
+      "cable_management": "No",
+      "monitor_riser_included": "No"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 55,
+        "cm": 140
+      },
+      "overall_depth": {
+        "inches": 24,
+        "cm": 61
+      },
+      "overall_height": {
+        "inches": 30,
+        "cm": 76
+      }
+    },
+    "product_care": {
+      "care_instruction": "Dust regularly. Wipe with a lightly damp cloth.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Moderate Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P012",
+      "name": "Flex Ergonomic Mesh Office Chair",
+      "sku": "NN-OCH-012",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Office Furniture",
+        "type": "Office Chairs"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1589384267710-7a170981ca78?w=800"
+      ],
+      "price": {
+        "current": 429.0,
+        "original": 529.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 100.0,
+          "percent": 19
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 891
+      }
+    },
+    "product_details": {
+      "style": "Modern Ergonomic",
+      "seat_material": "Foam + Mesh",
+      "back_material": "Breathable Mesh",
+      "frame_material": "Nylon + Aluminum",
+      "color": "Black"
+    },
+    "features": {
+      "adjustable_height": "Yes",
+      "lumbar_support": "Adjustable Lumbar",
+      "armrests": "4D Adjustable Armrests",
+      "headrest": "Adjustable Headrest",
+      "recline": "Yes \u2013 up to 135\u00b0",
+      "swivel": "360\u00b0 Swivel",
+      "casters": "Dual-Wheel PU Casters"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 26,
+        "cm": 66
+      },
+      "overall_depth": {
+        "inches": 26,
+        "cm": 66
+      },
+      "height_range": {
+        "min_inches": 44,
+        "max_inches": 48
+      },
+      "seat_height_range": {
+        "min_inches": 17,
+        "max_inches": 21
+      },
+      "weight_capacity_lbs": 275
+    },
+    "product_care": {
+      "care_instruction": "Wipe frame with a damp cloth. Vacuum mesh back regularly.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Full",
+      "warranty_length": "3 Years",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P013",
+      "name": "Hagen 5-Shelf Bookcase \u2013 White Oak",
+      "sku": "NN-BKC-013",
+      "brand": "NordicNest",
+      "tag": "Best Seller",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Storage Furniture",
+        "type": "Bookcases & Shelving"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=800"
+      ],
+      "price": {
+        "current": 329.0,
+        "original": 399.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 70.0,
+          "percent": 18
+        }
+      },
+      "reviews": {
+        "rating": 4.6,
+        "count": 445
+      }
+    },
+    "product_details": {
+      "style": "Scandinavian",
+      "primary_material": "Engineered Wood",
+      "finish": "White Oak Veneer",
+      "back_panel": "Yes",
+      "shelf_type": "Adjustable"
+    },
+    "features": {
+      "number_of_shelves": 5,
+      "adjustable_shelves": "Yes",
+      "wall_mounting": "Wall Mounting Hardware Included",
+      "anti_tip_hardware": "Included"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 32,
+        "cm": 81
+      },
+      "overall_depth": {
+        "inches": 12,
+        "cm": 30
+      },
+      "overall_height": {
+        "inches": 72,
+        "cm": 183
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a dry cloth. Avoid prolonged exposure to moisture.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Full Assembly Needed"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P014",
+      "name": "Tora Cane Door Sideboard \u2013 Natural Ash",
+      "sku": "NN-SDB-014",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Storage Furniture",
+        "type": "Sideboards & Buffets"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=800"
+      ],
+      "price": {
+        "current": 879.0,
+        "original": 879.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 0,
+          "percent": 0
+        }
+      },
+      "reviews": {
+        "rating": 4.8,
+        "count": 94
+      }
+    },
+    "product_details": {
+      "style": "Bohemian Scandinavian",
+      "primary_material": "Solid Ash",
+      "finish": "Natural",
+      "door_style": "Woven Cane",
+      "leg_style": "Tapered",
+      "leg_color": "Natural Ash"
+    },
+    "features": {
+      "storage_included": "Storage Included",
+      "number_of_doors": 2,
+      "adjustable_shelves": "Yes",
+      "drawers_included": "No Drawers"
+    },
+    "shared_dimensions": {
+      "overall_width": {
+        "inches": 60,
+        "cm": 152
+      },
+      "overall_depth": {
+        "inches": 16,
+        "cm": 41
+      },
+      "overall_height": {
+        "inches": 32,
+        "cm": 81
+      }
+    },
+    "product_care": {
+      "care_instruction": "Wipe with a soft dry cloth. Avoid harsh cleaners on the cane.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "1 Year",
+      "level_of_assembly": "Minimal Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Fast Shipping On All Orders",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P015",
+      "name": "Strand Teak Outdoor Dining Set \u2013 4 Chairs",
+      "sku": "NN-ODS-015",
+      "brand": "NordicNest",
+      "tag": "Sale",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Outdoor Furniture",
+        "type": "Outdoor Dining Sets"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+      ],
+      "price": {
+        "current": 1899.0,
+        "original": 2299.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 400.0,
+          "percent": 17
+        }
+      },
+      "reviews": {
+        "rating": 4.9,
+        "count": 211
+      }
+    },
+    "product_details": {
+      "style": "Coastal Modern",
+      "primary_material": "Grade A Teak",
+      "finish": "Natural Teak Oil",
+      "set_includes": "1 Table + 4 Chairs",
+      "weather_resistant": "Yes",
+      "uv_resistant": "Yes"
+    },
+    "features": {
+      "foldable": "Fixed",
+      "stackable_chairs": "Yes",
+      "cushions_included": "Cushions Not Included",
+      "umbrella_hole": "Yes"
+    },
+    "shared_dimensions": {
+      "table_length": {
+        "inches": 63,
+        "cm": 160
+      },
+      "table_width": {
+        "inches": 35,
+        "cm": 89
+      },
+      "table_height": {
+        "inches": 29,
+        "cm": 74
+      },
+      "chair_seat_height": {
+        "inches": 17,
+        "cm": 43
+      }
+    },
+    "product_care": {
+      "care_instruction": "Clean with mild soapy water. Re-oil teak annually to maintain colour.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "3 Years",
+      "level_of_assembly": "Moderate Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Standard Delivery 7\u201310 Days",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  },
+  {
+    "product": {
+      "id": "P016",
+      "name": "Mila Rattan Outdoor Sofa Set \u2013 3 Piece",
+      "sku": "NN-OSS-016",
+      "brand": "NordicNest",
+      "tag": "New",
+      "category": {
+        "top_level": "Furniture",
+        "department": "Outdoor Furniture",
+        "type": "Outdoor Sofa Sets"
+      },
+      "image_urls": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+      ],
+      "price": {
+        "current": 1349.0,
+        "original": 1599.0,
+        "currency": "USD",
+        "discount": {
+          "amount": 250.0,
+          "percent": 16
+        }
+      },
+      "reviews": {
+        "rating": 4.7,
+        "count": 138
+      }
+    },
+    "product_details": {
+      "style": "Bohemian Coastal",
+      "frame_material": "Powder-Coated Aluminum",
+      "weave_material": "PE Rattan",
+      "cushion_material": "Olefin Fabric",
+      "cushion_color": "Warm Gray",
+      "weather_resistant": "Yes"
+    },
+    "features": {
+      "set_includes": "2-Seat Sofa + 1 Armchair + 1 Coffee Table",
+      "cushions_included": "Cushions Included",
+      "stackable": "Non-Stackable",
+      "uv_resistant": "Yes",
+      "water_resistant": "Yes"
+    },
+    "shared_dimensions": {
+      "sofa_width": {
+        "inches": 55,
+        "cm": 140
+      },
+      "armchair_width": {
+        "inches": 30,
+        "cm": 76
+      },
+      "coffee_table_length": {
+        "inches": 40,
+        "cm": 102
+      },
+      "seat_height": {
+        "inches": 15,
+        "cm": 38
+      }
+    },
+    "product_care": {
+      "care_instruction": "Rinse with water. Store cushions indoors when not in use.",
+      "product_warranty": "Product Warranty Included",
+      "full_or_limited_warranty": "Limited",
+      "warranty_length": "2 Years",
+      "level_of_assembly": "Moderate Assembly"
+    },
+    "shipping_and_service": {
+      "fast_shipping": "Standard Delivery 7\u201310 Days",
+      "easy_return": "30 Days Conditional Return",
+      "customer_service": "Support to Help with All Your Needs"
+    }
+  }
+]

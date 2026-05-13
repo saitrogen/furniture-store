@@ -1,0 +1,74 @@
+{
+  "departments": [
+    "Bedroom Furniture",
+    "Kitchen & Dining Furniture",
+    "Living Room Furniture",
+    "Office Furniture",
+    "Outdoor Furniture",
+    "Storage Furniture"
+  ],
+  "types": [
+    "Accent Chairs",
+    "Beds",
+    "Bookcases",
+    "Coffee Tables",
+    "Desks",
+    "Dining Chairs",
+    "Dining Tables",
+    "Dressers",
+    "Nightstands",
+    "Office Chairs",
+    "Outdoor Dining Sets",
+    "Outdoor Sofa Sets",
+    "Sectionals",
+    "Sideboards",
+    "Sofas",
+    "TV Stands"
+  ],
+  "tags": [
+    "Best Seller",
+    "New",
+    "Sale"
+  ],
+  "materials": [
+    "Boucle Fabric",
+    "Engineered Wood",
+    "Faux Leather",
+    "Foam + Mesh",
+    "Grade A Teak",
+    "Linen Blend",
+    "Marble",
+    "PE Rattan",
+    "Performance Fabric",
+    "Powder-Coated Aluminum",
+    "Solid Acacia",
+    "Solid Ash",
+    "Solid Beech",
+    "Solid Birch",
+    "Solid Oak",
+    "Solid Walnut",
+    "Velvet"
+  ],
+  "colors": [
+    "Charcoal Gray",
+    "Cognac",
+    "Cream White",
+    "Dusty Rose",
+    "Gold",
+    "Oatmeal"
+  ],
+  "assembly_levels": [
+    "Full Assembly Needed",
+    "Minimal Assembly",
+    "Moderate Assembly",
+    "No Assembly Required"
+  ],
+  "price_range": {
+    "min": 189.0,
+    "max": 1899.0
+  },
+  "rating_buckets": [
+    4,
+    4.5
+  ]
+}

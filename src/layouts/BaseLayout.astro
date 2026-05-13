@@ -1,7 +1,7 @@
 ---
-import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 import "@/styles/global.css";
+import ShadcnNavbar from "@/components/react/ShadcnNavbar";
 
 interface Props {
   title: string;
@@ -21,7 +21,7 @@ const canonicalURL = Astro.site
 ---
 
 <!doctype html>
-<html lang="en" class="homeix">
+<html lang="en" class="lumen">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,7 +51,8 @@ const canonicalURL = Astro.site
   <body
     class="bg-background text-foreground font-sans antialiased min-h-screen"
   >
-    <Navbar/>
+
+<ShadcnNavbar client:load />
 
     <main>
       <slot />

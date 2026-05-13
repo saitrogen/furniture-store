@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import products from "@/content/data/new/product.json";
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<BaseLayout title={product.name} description={`${product.name} in ${product.department} by HOMEIX.`}>
+  <section class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <a href="/products?page=1" class="mb-6 inline-flex items-center text-sm text-primary hover:underline">
+      ← Back to products
+    </a>
+
+    <div class="grid grid-cols-1 gap-8 rounded-xl border border-border bg-card p-4 sm:p-6 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-lg bg-muted">
+        <img src={product.image} alt={product.name} class="h-full w-full object-cover" />
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
+        <h1 class="text-3xl font-semibold text-foreground sm:text-4xl">{product.name}</h1>
+        <p class="text-xl font-semibold text-foreground">${product.price.toLocaleString("en-US")}</p>
+        <p class="text-sm text-muted-foreground">Rating: ★ {product.rating}</p>
+
+        <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+          <div class="rounded-md border border-border bg-background p-3">
+            <dt class="text-muted-foreground">ID</dt>
+            <dd class="font-medium text-foreground">{product.id}</dd>
+          </div>
+          <div class="rounded-md border border-border bg-background p-3">
+            <dt class="text-muted-foreground">Slug</dt>
+            <dd class="font-medium text-foreground">{product.slug}</dd>
+          </div>
+          <div class="rounded-md border border-border bg-background p-3">
+            <dt class="text-muted-foreground">Category</dt>
+            <dd class="font-medium text-foreground">{product.category}</dd>
+          </div>
+          <div class="rounded-md border border-border bg-background p-3">
+            <dt class="text-muted-foreground">Department</dt>
+            <dd class="font-medium text-foreground">{product.department}</dd>
+          </div>
+          <div class="rounded-md border border-border bg-background p-3 sm:col-span-2">
+            <dt class="text-muted-foreground">Type</dt>
+            <dd class="font-medium text-foreground">{product.type}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

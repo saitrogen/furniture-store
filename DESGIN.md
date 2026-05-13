@@ -1,541 +1,216 @@
-# Furniture Store Template Design Guide
+# Theme Semantic Tokens
 
-This project uses a **Warm Craft** design system built on shadcn-style semantic tokens and Tailwind CSS v4 theme variables.
+DO NOT use hardcoded Tailwind colors like:
 
-The goal is simple:
-- Keep the logic reusable.
-- Keep the UI visually flexible.
-- Make theme changes easy by changing tokens, not components.
+- `bg-white`
+- `text-black`
+- `bg-stone-100`
+- `border-zinc-200`
 
----
+Always prefer semantic theme tokens.
 
-## 1. Design philosophy
+The project uses theme-bound CSS variables mapped into Tailwind utilities.
 
-This template should feel:
-- Warm.
-- Calm.
-- Premium.
-- Tactile.
-- Trustworthy.
+Example:
 
-It should not feel:
-- Loud.
-- Flashy.
-- Overdesigned.
-- Too trendy.
-- Too “tech product”.
+```html
+<div class="bg-background text-foreground border-border">
+````
 
-For a furniture store, the visuals should suggest materials, craftsmanship, and space.
+instead of:
+
+```html
+<div class="bg-white text-black border-gray-200">
+```
 
 ---
 
-## 2. Brand system structure
+# Available Semantic Color Tokens
 
-Use three layers:
+## Base Surface Tokens
 
-### Core layer
-This is the layout, sections, routing, and business logic.
+| Token                | Usage                    |
+| -------------------- | ------------------------ |
+| `background`         | Main page/app background |
+| `foreground`         | Main text color          |
+| `card`               | Card/container surface   |
+| `card-foreground`    | Text inside cards        |
+| `popover`            | Dropdown/modal surface   |
+| `popover-foreground` | Text inside popovers     |
 
-Examples:
-- Header.
-- Hero.
-- Collection grid.
-- Product cards.
-- Inquiry form.
-- Footer.
+Example:
 
-This layer should stay mostly unchanged across clients.
-
-### Theme layer
-This is the token layer in `global.css`.
-
-Examples:
-- `--background`
-- `--foreground`
-- `--primary`
-- `--card`
-- `--muted`
-- `--border`
-- `--radius`
-
-Change these when you want a different visual identity.
-
-### Surface layer
-This is the actual Tailwind classes used in pages and components.
-
-Examples:
-- `bg-background`
-- `text-foreground`
-- `bg-card`
-- `text-muted-foreground`
-- `border-border`
-- `bg-primary`
-- `text-primary-foreground`
-
-This layer should always use semantic classes, never raw hex colors.
+```html
+<section class="bg-background text-foreground">
+```
 
 ---
 
-## 3. Your theme meaning
+## Primary UI Tokens
 
-### Light theme
-The light theme is the default “Warm Craft” presentation.
+| Token                  | Usage                     |
+| ---------------------- | ------------------------- |
+| `primary`              | Main action/button color  |
+| `primary-foreground`   | Text/icons on primary     |
+| `secondary`            | Secondary surfaces        |
+| `secondary-foreground` | Text on secondary         |
+| `accent`               | Accent/highlight surfaces |
+| `accent-foreground`    | Text on accent            |
 
-It should feel like:
-- Soft daylight.
-- Neutral walls.
-- Oak, walnut, linen, stone.
-- A boutique showroom.
+Example:
 
-### Dark theme
-The dark theme should feel:
-- Rich.
-- Moody.
-- Refined.
-- Not harsh black.
-
-Use it for:
-- Premium furniture brands.
-- Evening showroom mood.
-- Luxury collections.
-- Editorial-style browsing.
+```html
+<button class="bg-primary text-primary-foreground">
+```
 
 ---
 
-## 4. Token usage rules
+## Muted Tokens
 
-Your `global.css` already defines the system correctly.
+| Token              | Usage             |
+| ------------------ | ----------------- |
+| `muted`            | Subtle background |
+| `muted-foreground` | Low emphasis text |
 
-Use these tokens like this:
+Example:
 
-### Page background
-Use:
-- `bg-background`
-
-Use for:
-- `<body>`
-- full-page wrappers
-- main site canvas
-
-Do not use raw background colors unless you are making a special section.
-
-### Main text
-Use:
-- `text-foreground`
-
-Use for:
-- body text
-- headings when no special treatment is needed
-- general page copy
-
-### Secondary text
-Use:
-- `text-muted-foreground`
-
-Use for:
-- captions
-- helper text
-- metadata
-- small descriptions
-- labels
-- section overlines
-
-### Card and surface blocks
-Use:
-- `bg-card`
-- `border-border`
-
-Use for:
-- product cards
-- info cards
-- form panels
-- testimonial cards
-- pricing cards
-
-### Primary actions
-Use:
-- `bg-primary`
-- `text-primary-foreground`
-
-Use for:
-- main CTA buttons
-- featured badges
-- key highlights
-- active states
-
-### Secondary actions
-Use:
-- `bg-secondary`
-- `text-secondary-foreground`
-
-Use for:
-- less important buttons
-- supporting chips
-- alternate highlights
-
-### Accent surface
-Use:
-- `bg-accent`
-- `text-accent-foreground`
-
-Use for:
-- hover highlights
-- soft callouts
-- small decorative blocks
-
-### Inputs
-Use:
-- `bg-background`
-- `border-input`
-- `focus:border-ring`
-
-Use for:
-- form fields
-- search bars
-- newsletter forms
-- contact forms
+```html
+<p class="text-muted-foreground">
+```
 
 ---
 
-## 5. Typography rules
+## Utility Tokens
 
-You already set:
-- `font-sans` for body text.
-- `font-heading` / `font-display` for headings.
+| Token         | Usage                       |
+| ------------- | --------------------------- |
+| `border`      | Borders                     |
+| `input`       | Inputs/forms                |
+| `ring`        | Focus rings                 |
+| `destructive` | Danger/delete/error actions |
 
-### Use `font-display` for:
-- H1
-- H2
-- H3
-- hero statements
-- section titles
-- product names when you want a refined feel
+Example:
 
-### Use `font-sans` for:
-- body copy
-- buttons
-- labels
-- navigation
-- form text
-- utility content
-
-### Headline style
-Headings should feel elegant and balanced.
-
-Recommended styles:
-- `font-display`
-- `tracking-[-0.03em]`
-- `leading-tight`
-- `text-wrap: balance`
-
-Use large sizes for the hero, smaller sizes for cards and section titles.
-
-### Body style
-Body copy should be easy to read.
-
-Recommended styles:
-- `font-sans`
-- `leading-7`
-- `text-muted-foreground` for secondary text
-- `max-w-prose` or `max-w-2xl` for long copy
+```html
+<input class="border-border bg-input ring-ring">
+```
 
 ---
 
-## 6. Where to use which classes
+# Sidebar Tokens
 
-### H1
-Use:
-- `font-display text-5xl md:text-7xl leading-tight tracking-[-0.03em]`
+Available sidebar-specific semantic tokens:
 
-Good for:
-- homepage hero
-- design test page title
-- major landing page statements
+* `sidebar`
+* `sidebar-foreground`
+* `sidebar-primary`
+* `sidebar-primary-foreground`
+* `sidebar-accent`
+* `sidebar-accent-foreground`
+* `sidebar-border`
+* `sidebar-ring`
 
-### H2
-Use:
-- `font-display text-3xl md:text-5xl leading-tight`
+Example:
 
-Good for:
-- section headings
-- collection titles
-- product group headings
-
-### H3
-Use:
-- `font-display text-2xl md:text-3xl`
-
-Good for:
-- product names
-- feature cards
-- content blocks
-
-### Paragraphs
-Use:
-- `text-base md:text-lg leading-7 text-muted-foreground`
-
-Good for:
-- descriptions
-- supporting copy
-- intro text
-
-### Small labels
-Use:
-- `text-sm uppercase tracking-[0.2em] text-muted-foreground`
-
-Good for:
-- section tags
-- overlines
-- category labels
-
-### Buttons
-Use:
-- Main button: `bg-primary text-primary-foreground`
-- Secondary button: `border border-border bg-transparent text-foreground`
-
-Shape:
-- `rounded-full` for softer premium feel
-- `rounded-xl` for forms and utility buttons
+```html
+<aside class="bg-sidebar text-sidebar-foreground">
+```
 
 ---
 
-## 7. Layout rules
+# Chart Tokens
 
-### Overall width
-Use:
-- `mx-auto max-w-6xl px-6 md:px-10`
+Available chart colors:
 
-This keeps the site centered and editorial.
+* `chart-1`
+* `chart-2`
+* `chart-3`
+* `chart-4`
+* `chart-5`
 
-### Section spacing
-Use:
-- `py-16`
-- `py-20`
-- `py-24`
+Example:
 
-Do not crowd sections together.
-
-### Grid rules
-Use:
-- `grid gap-6`
-- `md:grid-cols-2`
-- `xl:grid-cols-4`
-
-Furniture content works well in cards and collections.
-
-### Card spacing
-Use:
-- `p-5`
-- `p-6`
-- `rounded-2xl`
-- `rounded-3xl`
-
-Cards should feel calm and soft, not sharp.
+```html
+<div class="bg-chart-1">
+```
 
 ---
 
-## 8. Photography direction
+# Radius Tokens
 
-Use photography that shows:
-- Materials.
-- Grain.
-- Texture.
-- Joinery.
-- Real interiors.
-- Daylight.
-- Calm backgrounds.
+These are semantic radius values:
 
-Avoid:
-- Generic stock photos.
-- Busy rooms.
-- Over-saturated filters.
-- Loud staging.
-- Hard shadows unless intentional.
+* `rounded-sm`
+* `rounded-md`
+* `rounded-lg`
+* `rounded-xl`
+* `rounded-2xl`
+* `rounded-3xl`
+* `rounded-4xl`
 
-If you use product placeholders, make them feel like material boards or soft gradients, not random colored boxes.
+Avoid arbitrary radius values unless necessary.
 
 ---
 
-## 9. Motion rules
+# Font Tokens
 
-Motion should be subtle.
+| Token          | Usage                     |
+| -------------- | ------------------------- |
+| `font-sans`    | Main UI/body font         |
+| `font-heading` | Heading font              |
+| `font-display` | Decorative/editorial font |
 
-Use:
-- short fades
-- soft hover changes
-- gentle border or shadow transitions
+Example:
 
-Avoid:
-- bouncing animations
-- dramatic motion
-- flashy parallax
-- too much delay
-
-Recommended classes:
-- `transition`
-- `duration-200`
-- `hover:opacity-90`
-- `hover:bg-card`
-- `hover:shadow-sm`
+```html
+<h1 class="font-heading">
+```
 
 ---
 
-## 10. Dark mode rules
+# Theme Support
 
-Dark mode is controlled by the `.dark` class.
+These semantic tokens automatically adapt to:
 
-When dark mode is active:
-- Keep contrast readable.
-- Keep surfaces slightly lighter than the page background.
-- Keep primary color warm, not neon.
-- Use softer borders and muted secondary text.
+* default light theme
+* `.dark`
+* `.homeix`
+* `.lumen`
 
-Use dark mode for:
-- luxury themes
-- evening browsing
-- premium showroom moods
+Components should remain theme-agnostic.
 
-Do not make dark mode pure black unless the brand specifically wants that.
+Never hardcode colors unless explicitly required for a unique design case.
 
 ---
 
-## 11. Component guidance
+# Preferred Pattern
 
-### Header
-Use:
-- `bg-background`
-- `border-b border-border`
-- `text-foreground`
+Good:
 
-Keep it simple and elegant.
+```html
+<div class="bg-card text-card-foreground border-border">
+```
 
-### Hero
-Use:
-- `font-display`
-- large headline
-- muted supporting copy
-- one primary CTA
-- one secondary CTA
+Bad:
 
-### Product cards
-Use:
-- `bg-card`
-- `border border-border`
-- `rounded-3xl`
-- `shadow-sm`
-- `overflow-hidden`
-
-Inside the card:
-- image area on top
-- product name
-- short descriptor
-- price or category
-
-### Forms
-Use:
-- `bg-card`
-- `border border-border`
-- `rounded-2xl`
-- `border-input` on inputs
-- `focus:border-ring`
-
-Forms should feel soft and trustworthy.
-
-### Footer
-Use:
-- `bg-background`
-- `text-muted-foreground`
-- `border-t border-border`
-
-Keep footer content simple and informational.
+```html
+<div class="bg-white text-black border-gray-200">
+```
 
 ---
 
-## 12. Classes to prefer
+# Rule of Thumb
 
-Prefer these semantic classes:
-- `bg-background`
-- `text-foreground`
-- `bg-card`
-- `text-muted-foreground`
-- `bg-primary`
-- `text-primary-foreground`
-- `border-border`
-- `border-input`
-- `focus:border-ring`
-- `bg-secondary`
-- `bg-accent`
+Think in UI roles, not literal colors.
 
-These are safer because they work across themes.
+Ask:
 
----
+* "Is this a card?"
+* "Is this primary action text?"
+* "Is this muted helper text?"
 
-## 13. Classes to avoid
+instead of:
 
-Avoid hardcoding raw palette classes like:
-- `bg-stone-200`
-- `text-zinc-900`
-- `border-gray-300`
+* "Should this be gray?"
+* "Should this be white?"
 
-Avoid using too many one-off values unless you are testing.
-
-Avoid:
-- random gradients everywhere
-- too many shadows
-- too many border radii
-- bright accent overload
-
-The template should look curated, not busy.
-
----
-
-## 14. What to do when creating a new section
-
-Before building any section, ask:
-
-1. Is this a main surface or a support surface?
-2. Is this text primary or muted?
-3. Is this action primary or secondary?
-4. Should the surface use `card`, `background`, or `accent`?
-5. Does the spacing feel generous enough?
-
-If the answer is unclear, default to:
-- `bg-card`
-- `text-muted-foreground`
-- `border-border`
-- `rounded-2xl`
-- `shadow-sm`
-
-That keeps the design consistent.
-
----
-
-## 15. Starter page order
-
-Build in this order:
-1. Header
-2. Hero
-3. Collection grid
-4. Product cards
-5. Feature blocks
-6. Inquiry form
-7. Footer
-
-This gives the fastest path to a complete furniture storefront.
-
----
-
-## 16. Summary of the system
-
-This template is built to be:
-- easy to theme,
-- easy to reuse,
-- easy to sell,
-- easy to maintain.
-
-The rule is simple:
-- Use tokens in `global.css` for design decisions.
-- Use semantic Tailwind classes in components.
-- Only swap token values when changing brand style.
-
-That is how the template stays flexible without becoming messy.
