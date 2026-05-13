@@ -16,7 +16,7 @@ const products = getProducts();
       <a href="/collection" class="text-sm font-medium text-primary hover:underline">Browse by collection</a>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
       {products.map((product) => <ProductCard product={product} />)}
     </div>
   </section>

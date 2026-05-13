@@ -44,7 +44,7 @@ const { department } = Astro.props;
   </section>
 
   <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
       {department.products.map((product) => <ProductCard product={product} />)}
     </div>
   </section>

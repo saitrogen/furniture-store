@@ -23,15 +23,15 @@ const enquiryUrl = getWhatsAppUrl();
   description="Explore HOMEIX furniture collections and enquire directly on WhatsApp."
 >
   <section class="bg-secondary/45">
-    <div class="mx-auto grid min-h-[calc(100vh-7.5rem)] max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-      <div class="flex flex-col gap-6">
-        <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">{site.location}</p>
-        <div class="flex flex-col gap-4">
-          <h1 class="max-w-3xl text-5xl font-semibold leading-none text-foreground sm:text-6xl lg:text-7xl">
-            Furniture for composed, practical homes.
+    <div class="mx-auto grid max-w-7xl items-center gap-6 px-4 py-6 sm:px-6 sm:py-10 lg:min-h-[calc(100vh-7.5rem)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 lg:px-8 lg:py-12">
+      <div class="order-2 flex flex-col gap-4 lg:order-1 lg:gap-6">
+        <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground sm:text-sm sm:tracking-[0.22em]">{site.location}</p>
+        <div class="flex flex-col gap-3 sm:gap-4">
+          <h1 class="max-w-3xl text-4xl font-semibold leading-none text-foreground sm:text-6xl lg:text-7xl">
+            Furniture for practical homes.
           </h1>
-          <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Browse sofas, dining sets, bedroom pieces, office essentials, lighting, and decor. Every product page opens a direct WhatsApp enquiry.
+          <p class="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            Browse room-wise collections, compare pieces quickly, and send a direct WhatsApp enquiry from any product.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-3">
@@ -50,54 +50,54 @@ const enquiryUrl = getWhatsAppUrl();
             WhatsApp enquiry
           </a>
         </div>
-        <dl class="grid max-w-xl grid-cols-3 gap-4 border-y border-border py-5">
+        <dl class="grid max-w-xl grid-cols-3 gap-3 border-y border-border py-4 sm:gap-4 sm:py-5">
           <div>
-            <dt class="text-sm text-muted-foreground">Products</dt>
-            <dd class="text-2xl font-semibold text-foreground">{products.length}+</dd>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Products</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">{products.length}+</dd>
           </div>
           <div>
-            <dt class="text-sm text-muted-foreground">Rooms</dt>
-            <dd class="text-2xl font-semibold text-foreground">{allDepartments.length}</dd>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Rooms</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">{allDepartments.length}</dd>
           </div>
           <div>
-            <dt class="text-sm text-muted-foreground">Enquiry</dt>
-            <dd class="text-2xl font-semibold text-foreground">WhatsApp</dd>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Enquiry</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">WhatsApp</dd>
           </div>
         </dl>
       </div>
 
-      <a href={`/products/${heroProduct.slug}`} class="group block overflow-hidden rounded-lg border border-border bg-card">
-        <div class="aspect-4/3 overflow-hidden bg-muted">
+      <a href={`/products/${heroProduct.slug}`} class="group order-1 block overflow-hidden rounded-lg border border-border bg-card lg:order-2">
+        <div class="aspect-16/10 overflow-hidden bg-muted lg:aspect-4/3">
           <img
             src={heroProduct.image}
             alt={heroProduct.name}
             class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
         </div>
-        <div class="flex flex-wrap items-end justify-between gap-4 p-5">
+        <div class="flex flex-wrap items-end justify-between gap-3 p-4 sm:gap-4 sm:p-5">
           <div>
             <p class="text-sm text-muted-foreground">Featured piece</p>
-            <h2 class="text-2xl font-semibold text-foreground">{heroProduct.name}</h2>
+            <h2 class="text-xl font-semibold text-foreground sm:text-2xl">{heroProduct.name}</h2>
           </div>
-          <p class="text-lg font-semibold text-foreground">{formatPrice(heroProduct.price)}</p>
+          <p class="text-base font-semibold text-foreground sm:text-lg">{formatPrice(heroProduct.price)}</p>
         </div>
       </a>
     </div>
   </section>
 
-  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
     <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
       <div>
         <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Shop by room</p>
-        <h2 class="text-4xl font-semibold text-foreground">Collections</h2>
+        <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">Collections</h2>
       </div>
       <a href="/collection" class="text-sm font-medium text-primary hover:underline">See all collections</a>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
       {departments.map((department) => (
         <a href={`/collection/${department.slug}`} class="group overflow-hidden rounded-lg border border-border bg-card">
-          <div class="aspect-16/10 overflow-hidden bg-muted">
+          <div class="aspect-square overflow-hidden bg-muted sm:aspect-16/10">
             <img
               src={department.image}
               alt={department.name}
@@ -105,12 +105,12 @@ const enquiryUrl = getWhatsAppUrl();
               class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
             />
           </div>
-          <div class="flex items-center justify-between gap-4 p-4">
-            <div>
-              <h3 class="text-xl font-semibold text-foreground">{department.name}</h3>
-              <p class="text-sm text-muted-foreground">{department.count} products</p>
+          <div class="flex items-center justify-between gap-2 p-3 sm:gap-4 sm:p-4">
+            <div class="min-w-0">
+              <h3 class="line-clamp-2 text-base font-semibold leading-tight text-foreground sm:text-xl">{department.name}</h3>
+              <p class="text-xs text-muted-foreground sm:text-sm">{department.count} products</p>
             </div>
-            <span class="text-xl text-primary">→</span>
+            <span class="text-lg text-primary sm:text-xl">→</span>
           </div>
         </a>
       ))}
@@ -127,7 +127,7 @@ const enquiryUrl = getWhatsAppUrl();
         <a href="/collection" class="text-sm font-medium text-primary hover:underline">Browse all products</a>
       </div>
 
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
         {featuredProducts.map((product) => <ProductCard product={product} />)}
       </div>
     </div>

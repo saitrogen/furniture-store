@@ -1,7 +1,7 @@
 ---
 import ProductCard from "@/components/ProductCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getDepartments, getProducts, getWhatsAppUrl } from "@/lib/catalog";
+import { formatPrice, getDepartments, getProducts, getWhatsAppUrl, slugify } from "@/lib/catalog";
 
 const products = getProducts();
 const departments = getDepartments();
@@ -26,15 +26,15 @@ const departments = getDepartments();
         </a>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4">
         {departments.slice(0, 4).map((department) => (
           <a href={`/collection/${department.slug}`} class="group overflow-hidden rounded-lg border border-border bg-card">
-            <div class="aspect-16/10 overflow-hidden bg-muted">
+            <div class="aspect-square overflow-hidden bg-muted sm:aspect-16/10">
               <img src={department.image} alt={department.name} loading="lazy" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
             </div>
-            <div class="p-4">
-              <h2 class="text-xl font-semibold text-foreground">{department.name}</h2>
-              <p class="text-sm text-muted-foreground">{department.count} products</p>
+            <div class="p-3 sm:p-4">
+              <h2 class="line-clamp-2 text-base font-semibold leading-tight text-foreground sm:text-xl">{department.name}</h2>
+              <p class="text-xs text-muted-foreground sm:text-sm">{department.count} products</p>
             </div>
           </a>
         ))}
@@ -43,13 +43,49 @@ const departments = getDepartments();
   </section>
 
   <section class="border-y border-border bg-card/55">
-    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap gap-2">
-        {departments.map((department) => (
-          <a href={`/collection/${department.slug}`} class="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground hover:bg-accent">
-            {department.name}
-          </a>
-        ))}
+    <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Filter & sort</p>
+            <p id="collection-count" class="mt-1 text-sm font-medium text-foreground">{products.length} products</p>
+          </div>
+
+          <label class="flex items-center gap-2 text-sm text-muted-foreground">
+            <span class="hidden sm:inline">Sort</span>
+            <select
+              id="sort-products"
+              class="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Top rated</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+          <button
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+            class="shrink-0 rounded-md border border-foreground bg-foreground px-3 py-2 text-sm font-medium text-background"
+          >
+            All
+          </button>
+          {departments.map((department) => (
+            <button
+              type="button"
+              data-filter={department.slug}
+              aria-pressed="false"
+              class="shrink-0 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium text-foreground hover:bg-accent"
+            >
+              {department.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -57,13 +93,99 @@ const departments = getDepartments();
   <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
     <div class="mb-8 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
       <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">{products.length} products</p>
-        <h2 class="text-4xl font-semibold text-foreground">Browse everything</h2>
+        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Catalogue</p>
+        <h2 id="collection-heading" class="text-4xl font-semibold text-foreground">Browse everything</h2>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => <ProductCard product={product} />)}
+    <div id="products-grid" class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+      {products.map((product, index) => (
+        <div
+          data-product-card
+          data-index={index}
+          data-name={product.name}
+          data-price={product.price}
+          data-rating={product.rating}
+          data-department={slugify(product.department)}
+          data-department-name={product.department}
+          data-price-label={formatPrice(product.price)}
+        >
+          <ProductCard product={product} />
+        </div>
+      ))}
     </div>
   </section>
+
+  <script is:inline>
+    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+    const sortSelect = document.getElementById("sort-products");
+    const grid = document.getElementById("products-grid");
+    const countLabel = document.getElementById("collection-count");
+    const heading = document.getElementById("collection-heading");
+    const cards = Array.from(document.querySelectorAll("[data-product-card]"));
+    let activeFilter = "all";
+
+    function applyControls() {
+      if (!grid) return;
+
+      const visibleCards = cards.filter((card) => {
+        const matches =
+          activeFilter === "all" || card.getAttribute("data-department") === activeFilter;
+        card.classList.toggle("hidden", !matches);
+        return matches;
+      });
+
+      const sortedCards = [...visibleCards].sort((a, b) => {
+        const sortValue = sortSelect instanceof HTMLSelectElement ? sortSelect.value : "featured";
+        const priceA = Number(a.getAttribute("data-price"));
+        const priceB = Number(b.getAttribute("data-price"));
+        const ratingA = Number(a.getAttribute("data-rating"));
+        const ratingB = Number(b.getAttribute("data-rating"));
+        const nameA = a.getAttribute("data-name") || "";
+        const nameB = b.getAttribute("data-name") || "";
+
+        if (sortValue === "price-low") return priceA - priceB;
+        if (sortValue === "price-high") return priceB - priceA;
+        if (sortValue === "rating") return ratingB - ratingA;
+        if (sortValue === "name") return nameA.localeCompare(nameB);
+        return Number(a.getAttribute("data-index")) - Number(b.getAttribute("data-index"));
+      });
+
+      sortedCards.forEach((card) => grid.appendChild(card));
+
+      const activeButton = filterButtons.find(
+        (button) => button.getAttribute("data-filter") === activeFilter
+      );
+      const activeName = activeFilter === "all" ? "Browse everything" : activeButton?.textContent?.trim();
+
+      if (countLabel) {
+        countLabel.textContent = `${visibleCards.length} product${visibleCards.length === 1 ? "" : "s"}`;
+      }
+
+      if (heading && activeName) {
+        heading.textContent = activeName;
+      }
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.getAttribute("data-filter") || "all";
+
+        filterButtons.forEach((item) => {
+          const isActive = item === button;
+          item.setAttribute("aria-pressed", String(isActive));
+          item.classList.toggle("border-foreground", isActive);
+          item.classList.toggle("bg-foreground", isActive);
+          item.classList.toggle("text-background", isActive);
+          item.classList.toggle("border-border", !isActive);
+          item.classList.toggle("bg-background", !isActive);
+          item.classList.toggle("text-foreground", !isActive);
+        });
+
+        applyControls();
+      });
+    });
+
+    sortSelect?.addEventListener("change", applyControls);
+  </script>
 </BaseLayout>
