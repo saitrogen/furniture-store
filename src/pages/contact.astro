@@ -1,16 +1,41 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/homeix/PageHero.astro";
-import VisitStudio from "@/components/homeix/VisitStudio.astro";
-import ContactForm from "@/components/homeix/ContactForm.astro";
+import { getWhatsAppUrl, site } from "@/lib/catalog";
 ---
 
-<BaseLayout title="Contact HOMEIX">
-    <PageHero
-        eyebrow="Find Us"
-        title="Visit Our Studio"
-        subtitle="We'd love to host you in our Vadapuram studio. Reach out or drop by to explore the collection."
-    />
-    <VisitStudio />
-    <ContactForm />
+<BaseLayout title="Contact" description="Contact HOMEIX for furniture enquiries.">
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">Contact</p>
+        <h1 class="mt-3 text-5xl font-semibold leading-none text-foreground sm:text-6xl">Tell us what you are looking for.</h1>
+        <p class="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
+          Product enquiries, custom dimensions, delivery questions, and showroom visits all start on WhatsApp.
+        </p>
+        <a
+          href={getWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+        >
+          WhatsApp enquiry
+        </a>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-lg border border-border bg-card p-5">
+          <p class="text-sm text-muted-foreground">Location</p>
+          <h2 class="mt-2 text-2xl font-semibold text-foreground">{site.location}</h2>
+        </div>
+        <div class="rounded-lg border border-border bg-card p-5">
+          <p class="text-sm text-muted-foreground">Phone</p>
+          <h2 class="mt-2 text-2xl font-semibold text-foreground">{site.phone}</h2>
+        </div>
+        <div class="rounded-lg border border-border bg-card p-5 sm:col-span-2">
+          <p class="text-sm text-muted-foreground">Email</p>
+          <h2 class="mt-2 text-2xl font-semibold text-foreground">{site.email}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

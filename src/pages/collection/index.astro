@@ -1,0 +1,96 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getProducts, getWhatsAppUrl } from "@/lib/catalog";
+
+const products = getProducts();
+---
+
+<BaseLayout title="Collection" description="Browse the full HOMEIX furniture and decor collection.">
+  <section class="mx-auto max-w-7xl px-4 pb-3 pt-5 sm:px-6 sm:pt-8 lg:px-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Collection</p>
+        <h1 class="mt-2 text-4xl font-semibold leading-none text-foreground sm:text-5xl">All furniture</h1>
+        <p class="mt-2 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+          Browse, filter, and enquire directly on WhatsApp.
+        </p>
+      </div>
+      <a
+        href={getWhatsAppUrl()}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden min-h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:inline-flex"
+      >
+        WhatsApp enquiry
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="border-y border-border bg-card/55"
+    data-catalog-browser
+    data-filter-mode="department"
+    data-default-heading="Browse everything"
+  >
+    <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-3">
+        <div class="grid grid-cols-[1fr_auto] gap-3 sm:grid-cols-[1fr_minmax(14rem,18rem)_minmax(11rem,13rem)] sm:items-end">
+          <div>
+            <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Filter & sort</p>
+            <p data-catalog-count class="mt-1 text-sm font-medium text-foreground">{products.length} products</p>
+          </div>
+
+          <label class="col-span-2 flex flex-col gap-1 text-sm text-muted-foreground sm:col-span-1">
+            <span class="sr-only">Search</span>
+            <input
+              data-catalog-search
+              type="search"
+              placeholder="Search furniture"
+              class="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </label>
+
+          <label class="row-start-1 flex flex-col gap-1 text-sm text-muted-foreground sm:row-start-auto">
+            <span class="sr-only">Sort</span>
+            <select
+              data-catalog-sort
+              class="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Top rated</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div data-catalog-filters class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"></div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 sm:pt-8 lg:px-8">
+      <div class="mb-4 flex flex-col justify-between gap-3 sm:mb-6 sm:flex-row sm:items-end">
+        <div>
+          <p class="sr-only">Catalogue</p>
+          <h2 data-catalog-heading class="sr-only">Browse everything</h2>
+        </div>
+      </div>
+
+      <div data-catalog-grid class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3"></div>
+      <p data-catalog-status class="hidden rounded-lg border border-border bg-background p-6 text-center text-sm text-muted-foreground">
+        No products found.
+      </p>
+      <div data-catalog-sentinel class="h-10"></div>
+      <button
+        type="button"
+        data-catalog-load-more
+        class="mx-auto mt-6 hidden min-h-11 items-center justify-center rounded-md border border-border bg-background px-5 text-sm font-medium text-foreground hover:bg-accent"
+      >
+        Load more
+      </button>
+    </div>
+  </section>
+
+  <script src="/catalog-browser.js" defer></script>
+</BaseLayout>

@@ -206,6 +206,129 @@
 .homeix .animate-marquee {
     animation: marquee 20s linear infinite;
 }
+/* homeix end */
+/* ============================================
+   LUMEN — Warm Stone & Sage Theme
+   Usage: <html class="lumen"> or <body class="lumen">
+   ============================================ */
+
+.lumen {
+    /* Base surfaces — gallery white with warm undertone */
+    --background:         oklch(0.978 0.005 85);   /* #F8F6F2 Ivory White */
+    --foreground:         oklch(0.200 0.014 50);   /* #2C2A27 Deep Charcoal */
+
+    /* Cards — barely lifted from background */
+    --card:               oklch(0.990 0.004 82);   /* #FAFAF8 Paper White */
+    --card-foreground:    oklch(0.200 0.014 50);
+
+    /* Popover */
+    --popover:            oklch(0.990 0.004 82);
+    --popover-foreground: oklch(0.200 0.014 50);
+
+    /* Primary = Sage Green — restrained, natural */
+    --primary:            oklch(0.520 0.062 155);  /* #6B8F71 Sage */
+    --primary-foreground: oklch(0.978 0.005 85);   /* ivory text on sage */
+
+    /* Secondary = Warm Stone */
+    --secondary:          oklch(0.920 0.016 75);   /* #EAE3D8 Warm Beige */
+    --secondary-foreground: oklch(0.260 0.016 52); /* #3D3830 */
+
+    /* Muted */
+    --muted:              oklch(0.940 0.012 78);   /* #F0EBE2 */
+    --muted-foreground:   oklch(0.520 0.022 60);   /* #7A7267 Warm Gray */
+
+    /* Accent = Walnut — used sparingly */
+    --accent:             oklch(0.920 0.016 75);
+    --accent-foreground:  oklch(0.260 0.016 52);
+
+    /* Destructive */
+    --destructive:        oklch(0.577 0.245 27.325);
+
+    /* Borders — whisper thin warm lines */
+    --border:             oklch(0.870 0.018 72);   /* #DDD5C8 Stone Line */
+    --input:              oklch(0.870 0.018 72);
+    --ring:               oklch(0.520 0.062 155);  /* Sage focus ring */
+
+    /* Charts */
+    --chart-1:            oklch(0.520 0.062 155);  /* Sage */
+    --chart-2:            oklch(0.620 0.075 72);   /* Walnut Amber */
+    --chart-3:            oklch(0.420 0.048 145);  /* Deep Sage */
+    --chart-4:            oklch(0.760 0.030 85);   /* Stone */
+    --chart-5:            oklch(0.660 0.055 60);   /* Warm Tan */
+
+    /* Radius — soft, not bubbly */
+    --radius:             0.5rem;
+
+    /* Fonts — editorial serif + clean humanist sans */
+    --font-display:       'Cormorant Garamond Variable', Georgia, serif;
+    --font-sans:          'Manrope Variable', sans-serif;
+    --font-heading:       var(--font-display);
+
+    /* Sidebar */
+    --sidebar:            oklch(0.968 0.007 80);
+    --sidebar-foreground: oklch(0.200 0.014 50);
+    --sidebar-primary:    oklch(0.520 0.062 155);
+    --sidebar-primary-foreground: oklch(0.978 0.005 85);
+    --sidebar-accent:     oklch(0.920 0.016 75);
+    --sidebar-accent-foreground: oklch(0.260 0.016 52);
+    --sidebar-border:     oklch(0.870 0.018 72);
+    --sidebar-ring:       oklch(0.520 0.062 155);
+}
+
+/* Lumen — Dark counterpart */
+.lumen.dark,
+.dark .lumen {
+    --background:         oklch(0.145 0.010 52);   /* #1E1C19 Graphite */
+    --foreground:         oklch(0.920 0.008 78);   /* #E6E2DC Warm White */
+
+    --card:               oklch(0.185 0.012 54);   /* #2A2825 */
+    --card-foreground:    oklch(0.920 0.008 78);
+
+    --popover:            oklch(0.185 0.012 54);
+    --popover-foreground: oklch(0.920 0.008 78);
+
+    /* Primary = lighter sage for dark bg */
+    --primary:            oklch(0.660 0.070 155);  /* #8EAF93 Light Sage */
+    --primary-foreground: oklch(0.145 0.010 52);
+
+    --secondary:          oklch(0.250 0.014 55);   /* #3A3733 */
+    --secondary-foreground: oklch(0.920 0.008 78);
+
+    --muted:              oklch(0.235 0.012 53);
+    --muted-foreground:   oklch(0.620 0.020 68);
+
+    --accent:             oklch(0.255 0.014 55);
+    --accent-foreground:  oklch(0.920 0.008 78);
+
+    --destructive:        oklch(0.704 0.191 22.216);
+
+    --border:             oklch(1 0 0 / 9%);
+    --input:              oklch(1 0 0 / 12%);
+    --ring:               oklch(0.660 0.070 155);
+
+    --chart-1:            oklch(0.660 0.070 155);
+    --chart-2:            oklch(0.720 0.060 72);
+    --chart-3:            oklch(0.530 0.055 148);
+    --chart-4:            oklch(0.820 0.022 80);
+    --chart-5:            oklch(0.680 0.050 62);
+
+    --sidebar:            oklch(0.172 0.011 52);
+    --sidebar-foreground: oklch(0.920 0.008 78);
+    --sidebar-primary:    oklch(0.660 0.070 155);
+    --sidebar-primary-foreground: oklch(0.145 0.010 52);
+    --sidebar-accent:     oklch(0.255 0.014 55);
+    --sidebar-accent-foreground: oklch(0.920 0.008 78);
+    --sidebar-border:     oklch(1 0 0 / 9%);
+    --sidebar-ring:       oklch(0.660 0.070 155);
+}
+
+/* Sage glow — equivalent of homeix's gold-glow */
+.lumen .sage-glow {
+    box-shadow: 0 0 28px 0 oklch(0.520 0.062 155 / 10%);
+}
+/* lumen ends */
+
+
 
 @layer base {
     * {
@@ -227,7 +350,7 @@
     h5,
     h6 {
         font-family: var(--font-display);
-        letter-spacing: -0.03em;
+        letter-spacing: 0;
         text-wrap: balance;
     }
 

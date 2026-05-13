@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getWhatsAppUrl } from "@/lib/catalog";
+---
+
+<BaseLayout title="Delivery" description="Delivery and installation information for HOMEIX furniture.">
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-sm uppercase tracking-[0.22em] text-muted-foreground">Delivery</p>
+      <h1 class="mt-3 text-5xl font-semibold leading-none text-foreground sm:text-6xl">Delivery details are confirmed per order.</h1>
+      <p class="mt-5 text-lg leading-8 text-muted-foreground">
+        Furniture size, address, floor access, installation needs, and finish choice can change the timeline. Send a WhatsApp enquiry from any product page and we will confirm the practical details.
+      </p>
+      <a
+        href={getWhatsAppUrl("Hi HOMEIX, I would like to ask about furniture delivery.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+      >
+        WhatsApp enquiry
+      </a>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      {["Availability check", "Delivery estimate", "Installation support"].map((item) => (
+        <div class="rounded-lg border border-border bg-card p-5">
+          <h2 class="text-xl font-semibold text-foreground">{item}</h2>
+          <p class="mt-2 text-sm leading-6 text-muted-foreground">Confirmed clearly over WhatsApp before finalizing the order.</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

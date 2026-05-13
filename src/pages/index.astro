@@ -1,24 +1,226 @@
 ---
+import ProductCard from "@/components/ProductCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import HomeHero from "@/components/homeix/HomeHero.astro";
-import CollectionsBento from "@/components/homeix/CollectionsBento.astro";
-import StorySplit from "@/components/homeix/StorySplit.astro";
-import HeritageSplit from "@/components/homeix/HeritageSplit.astro";
-import WhyChoose from "@/components/homeix/WhyChoose.astro";
-import ComboDeals from "@/components/homeix/ComboDeals.astro";
-import Testimonials from "@/components/homeix/Testimonials.astro";
-import VisitStudio from "@/components/homeix/VisitStudio.astro";
-import ContactForm from "@/components/homeix/ContactForm.astro";
+import {
+  formatPrice,
+  getDepartments,
+  getFeaturedProducts,
+  getProducts,
+  getWhatsAppUrl,
+  site,
+} from "@/lib/catalog";
+
+const products = getProducts();
+const featuredProducts = getFeaturedProducts(6);
+const allDepartments = getDepartments();
+const departments = allDepartments.slice(0, 6);
+const heroProduct = featuredProducts[0];
+const enquiryUrl = getWhatsAppUrl();
+const heroSlides = featuredProducts.slice(0, 5);
 ---
 
-<BaseLayout title="Turning Spaces Into Comfort Homes">
-  <HomeHero />
-  <CollectionsBento />
-  <StorySplit />
-  <HeritageSplit />
-  <WhyChoose />
-  <ComboDeals />
-  <Testimonials />
-  <VisitStudio />
-  <ContactForm />
+<BaseLayout
+  title="Furniture Showcase"
+  description="Explore HOMEIX furniture collections and enquire directly on WhatsApp."
+>
+  <section class="bg-secondary/45">
+    <div class="mx-auto grid max-w-7xl items-center gap-6 px-4 py-6 sm:px-6 sm:py-10 lg:min-h-[calc(100vh-7.5rem)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 lg:px-8 lg:py-12">
+      <div class="order-2 flex flex-col gap-4 lg:order-1 lg:gap-6">
+        <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground sm:text-sm sm:tracking-[0.22em]">{site.location}</p>
+        <div class="flex flex-col gap-3 sm:gap-4">
+          <h1 class="max-w-3xl text-4xl font-semibold leading-none text-foreground sm:text-6xl lg:text-7xl">
+            Furniture for practical homes.
+          </h1>
+          <p class="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            Browse room-wise collections, compare pieces quickly, and send a direct WhatsApp enquiry from any product.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="/collection"
+            class="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition hover:bg-foreground/90"
+          >
+            View collection
+          </a>
+          <a
+            href={enquiryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+          >
+            WhatsApp enquiry
+          </a>
+        </div>
+        <dl class="grid max-w-xl grid-cols-3 gap-3 border-y border-border py-4 sm:gap-4 sm:py-5">
+          <div>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Products</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">{products.length}+</dd>
+          </div>
+          <div>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Rooms</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">{allDepartments.length}</dd>
+          </div>
+          <div>
+            <dt class="text-xs text-muted-foreground sm:text-sm">Enquiry</dt>
+            <dd class="text-xl font-semibold text-foreground sm:text-2xl">WhatsApp</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="order-1 overflow-hidden rounded-lg border border-border bg-card lg:order-2" data-hero-carousel>
+        <div class="relative aspect-16/10 overflow-hidden bg-muted lg:aspect-4/3">
+          {heroSlides.map((product, index) => (
+            <a
+              href={`/products/${product.slug}`}
+              data-hero-slide
+              aria-label={`View ${product.name}`}
+              class={`absolute inset-0 transition-opacity duration-500 ${index === 0 ? "opacity-100" : "opacity-0"}`}
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                class="h-full w-full object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </a>
+          ))}
+
+          <div class="absolute bottom-3 left-3 flex gap-1.5">
+            {heroSlides.map((_, index) => (
+              <button
+                type="button"
+                data-hero-dot={index}
+                aria-label={`Show featured product ${index + 1}`}
+                class={`h-1.5 rounded-full transition-all ${index === 0 ? "w-6 bg-background" : "w-1.5 bg-background/60"}`}
+              />
+            ))}
+          </div>
+        </div>
+        <div class="flex flex-wrap items-end justify-between gap-3 p-4 sm:gap-4 sm:p-5">
+          <div>
+            <p class="text-sm text-muted-foreground">Featured piece</p>
+            <h2 data-hero-title class="text-xl font-semibold text-foreground sm:text-2xl">{heroProduct.name}</h2>
+          </div>
+          <p data-hero-price class="text-base font-semibold text-foreground sm:text-lg">{formatPrice(heroProduct.price)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+    <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Shop by room</p>
+        <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">Collections</h2>
+      </div>
+      <a href="/collection" class="text-sm font-medium text-primary hover:underline">See all collections</a>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+      {departments.map((department) => (
+        <a href={`/collection/${department.slug}`} class="group overflow-hidden rounded-lg border border-border bg-card">
+          <div class="aspect-square overflow-hidden bg-muted sm:aspect-16/10">
+            <img
+              src={department.image}
+              alt={department.name}
+              loading="lazy"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div class="flex items-center justify-between gap-2 p-3 sm:gap-4 sm:p-4">
+            <div class="min-w-0">
+              <h3 class="line-clamp-2 text-base font-semibold leading-tight text-foreground sm:text-xl">{department.name}</h3>
+              <p class="text-xs text-muted-foreground sm:text-sm">{department.count} products</p>
+            </div>
+            <span class="text-lg text-primary sm:text-xl">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-y border-border bg-card/60">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Popular now</p>
+          <h2 class="text-4xl font-semibold text-foreground">Featured furniture</h2>
+        </div>
+        <a href="/collection" class="text-sm font-medium text-primary hover:underline">Browse all products</a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+        {featuredProducts.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">How enquiry works</p>
+        <h2 class="mt-2 text-4xl font-semibold text-foreground">Simple, direct, no cart needed.</h2>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {["Open a product", "Send WhatsApp enquiry", "Confirm details"].map((step, index) => (
+          <div class="rounded-lg border border-border bg-card p-5">
+            <p class="text-sm text-muted-foreground">0{index + 1}</p>
+            <h3 class="mt-3 text-xl font-semibold text-foreground">{step}</h3>
+            <p class="mt-2 text-sm leading-6 text-muted-foreground">
+              {index === 0 && "Review images, product type, rating, and guide pricing."}
+              {index === 1 && "The message is pre-filled with the product name for faster conversation."}
+              {index === 2 && "Ask about finishes, availability, delivery, or custom sizing."}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ heroSlides: heroSlides.map((product) => ({ name: product.name, price: formatPrice(product.price) })) }}>
+    const carousel = document.querySelector("[data-hero-carousel]");
+    const slides = Array.from(document.querySelectorAll("[data-hero-slide]"));
+    const dots = Array.from(document.querySelectorAll("[data-hero-dot]"));
+    const title = document.querySelector("[data-hero-title]");
+    const price = document.querySelector("[data-hero-price]");
+    let current = 0;
+    let timer;
+
+    function showSlide(index) {
+      current = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("opacity-100", slideIndex === current);
+        slide.classList.toggle("opacity-0", slideIndex !== current);
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("w-6", dotIndex === current);
+        dot.classList.toggle("w-1.5", dotIndex !== current);
+        dot.classList.toggle("bg-background", dotIndex === current);
+        dot.classList.toggle("bg-background/60", dotIndex !== current);
+      });
+
+      if (title) title.textContent = heroSlides[current].name;
+      if (price) price.textContent = heroSlides[current].price;
+    }
+
+    function startCarousel() {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => showSlide(current + 1), 4500);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startCarousel();
+      });
+    });
+
+    if (carousel && slides.length > 1) {
+      carousel.addEventListener("mouseenter", () => window.clearInterval(timer));
+      carousel.addEventListener("mouseleave", startCarousel);
+      startCarousel();
+    }
+  </script>
 </BaseLayout>
