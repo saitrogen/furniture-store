@@ -20,58 +20,162 @@ const relatedProducts = products
 const enquiryUrl = getWhatsAppUrl(
   `Hi HOMEIX, I would like to enquire about ${product.name} (${product.id}).`
 );
+
+const rawProduct = product as typeof product & {
+  brand?: string;
+  images?: string[];
+  colors?: Array<{ name: string; image?: string; images?: string[]; swatch?: string }>;
+  variants?: Array<{ name: string; image?: string; images?: string[]; swatch?: string }>;
+  options?: Record<string, string[]>;
+  properties?: Record<string, string | number>;
+};
+
+const fallbackMedia = [
+  product.image,
+  ...relatedProducts.map((item) => item.image),
+].filter(Boolean);
+const productImages = Array.from(new Set([...(rawProduct.images ?? []), ...fallbackMedia])).slice(0, 6);
+const generatedColours = [
+  { name: "Natural", swatch: "#b89168", image: productImages[0] },
+  { name: "Olive", swatch: "#59624a", image: productImages[1] ?? productImages[0] },
+  { name: "Slate", swatch: "#4d4d4f", image: productImages[2] ?? productImages[0] },
+  { name: "Ivory", swatch: "#e8e1d3", image: productImages[3] ?? productImages[0] },
+];
+const colourOptions = rawProduct.colors ?? rawProduct.variants ?? generatedColours;
+const optionGroups =
+  rawProduct.options ??
+  (product.type.toLowerCase().includes("sofa") || product.type.toLowerCase().includes("sectional")
+    ? { "Seating Capacity": ["1 Seater", "2 Seater", "3 Seater"] }
+    : product.type.toLowerCase().includes("bed")
+      ? { Size: ["Queen", "King"] }
+      : { Finish: ["Standard", "Custom"] });
+const properties =
+  rawProduct.properties ??
+  {
+    Category: product.category,
+    Department: product.department,
+    Type: product.type,
+    "Product ID": product.id,
+  };
 ---
 
 <BaseLayout title={product.name} description={`${product.name} in ${product.department} by HOMEIX.`}>
-  <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+  <section class="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 sm:py-8 lg:px-8">
     <a href={`/collection/${slugify(product.department)}`} class="inline-flex items-center text-sm font-medium text-primary hover:underline">
       ← Back to {product.department}
     </a>
 
-    <div class="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-      <div class="overflow-hidden rounded-lg border border-border bg-muted">
-        <img src={product.image} alt={product.name} class="h-full w-full object-cover" />
+    <div class="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+      <div class="lg:hidden">
+        <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
+        <h1 class="mt-2 text-3xl font-semibold leading-tight text-foreground">{product.name}</h1>
+        <p class="mt-1 text-sm text-muted-foreground">By {rawProduct.brand ?? "HOMEIX"} · ★ {product.rating}</p>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
-        <h1 class="text-5xl font-semibold leading-none text-foreground sm:text-6xl">{product.name}</h1>
-        <p class="max-w-xl text-lg leading-8 text-muted-foreground">
-          A selected {product.type.toLowerCase()} from the HOMEIX catalogue. Send a WhatsApp enquiry for availability, finishes, delivery, and custom options.
-        </p>
-
-        <div class="flex flex-wrap items-center gap-4 border-y border-border py-5">
-          <p class="text-2xl font-semibold text-foreground">{formatPrice(product.price)}</p>
-          <p class="text-sm text-muted-foreground">★ {product.rating} rating</p>
+      <div class="grid gap-3 lg:grid-cols-[5rem_1fr]">
+        <div class="order-2 flex gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:overflow-visible">
+          {productImages.map((image, index) => (
+            <button
+              type="button"
+              data-gallery-thumb
+              data-gallery-image={image}
+              aria-label={`View image ${index + 1}`}
+              class={`h-16 w-16 shrink-0 overflow-hidden rounded-md border bg-card ${index === 0 ? "border-primary" : "border-border"}`}
+            >
+              <img src={image} alt={`${product.name} view ${index + 1}`} loading="lazy" class="h-full w-full object-cover" />
+            </button>
+          ))}
         </div>
 
-        <a
-          href={enquiryUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:w-fit"
-        >
-          WhatsApp enquiry
-        </a>
+        <div class="order-1 overflow-hidden rounded-lg border border-border bg-muted lg:order-2">
+          <img
+            id="product-main-image"
+            src={productImages[0]}
+            alt={product.name}
+            class="aspect-4/3 h-full w-full object-cover"
+          />
+        </div>
+      </div>
 
-        <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-          <div class="rounded-md border border-border bg-background p-3">
-            <dt class="text-muted-foreground">Product ID</dt>
-            <dd class="font-medium text-foreground">{product.id}</dd>
+      <div class="flex flex-col gap-5">
+        <div class="hidden lg:block">
+          <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{product.department}</p>
+          <h1 class="mt-2 text-5xl font-semibold leading-none text-foreground">{product.name}</h1>
+          <p class="mt-3 text-sm text-muted-foreground">By {rawProduct.brand ?? "HOMEIX"} · ★ {product.rating} rating</p>
+        </div>
+
+        <div class="rounded-lg border border-border bg-card p-4">
+          <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Guide price</p>
+          <p class="mt-1 text-3xl font-semibold text-foreground">{formatPrice(product.price)}</p>
+          <p class="mt-2 text-sm leading-6 text-muted-foreground">
+            Confirm availability, finish, delivery, and custom sizing over WhatsApp.
+          </p>
+          <a
+            href={enquiryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+          >
+            WhatsApp enquiry
+          </a>
+        </div>
+
+        <section>
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-base font-semibold text-foreground">Colour</h2>
+            <p id="selected-colour" class="text-sm text-muted-foreground">{colourOptions[0]?.name}</p>
           </div>
-          <div class="rounded-md border border-border bg-background p-3">
-            <dt class="text-muted-foreground">Category</dt>
-            <dd class="font-medium text-foreground">{product.category}</dd>
+          <div class="mt-3 grid grid-cols-4 gap-3 sm:grid-cols-6">
+            {colourOptions.map((colour, index) => {
+              const image = colour.image ?? colour.images?.[0] ?? productImages[index] ?? productImages[0];
+              return (
+                <button
+                  type="button"
+                  data-color-option
+                  data-color-name={colour.name}
+                  data-gallery-image={image}
+                  class={`rounded-md border bg-card p-1 text-left ${index === 0 ? "border-primary" : "border-border"}`}
+                >
+                  <span
+                    class="block aspect-4/3 rounded-sm border border-border bg-muted"
+                    style={`background:${colour.swatch ?? "transparent"}`}
+                  >
+                    <img src={image} alt={colour.name} loading="lazy" class="h-full w-full object-cover mix-blend-multiply" />
+                  </span>
+                  <span class="mt-1 block text-center text-xs leading-tight text-muted-foreground">{colour.name}</span>
+                </button>
+              );
+            })}
           </div>
-          <div class="rounded-md border border-border bg-background p-3">
-            <dt class="text-muted-foreground">Department</dt>
-            <dd class="font-medium text-foreground">{product.department}</dd>
-          </div>
-          <div class="rounded-md border border-border bg-background p-3 sm:col-span-2">
-            <dt class="text-muted-foreground">Type</dt>
-            <dd class="font-medium text-foreground">{product.type}</dd>
-          </div>
-        </dl>
+        </section>
+
+        {Object.entries(optionGroups).map(([group, values]) => (
+          <section>
+            <h2 class="text-base font-semibold text-foreground">{group}</h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {values.map((value, index) => (
+                <button
+                  type="button"
+                  class={`min-h-11 rounded-md border px-4 text-sm font-medium ${index === values.length - 1 ? "border-primary text-foreground" : "border-border bg-card text-foreground"}`}
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <section class="rounded-lg border border-border bg-card p-4">
+          <h2 class="text-base font-semibold text-foreground">Product details</h2>
+          <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+            {Object.entries(properties).map(([label, value]) => (
+              <div>
+                <dt class="text-muted-foreground">{label}</dt>
+                <dd class="mt-1 font-medium text-foreground">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
       </div>
     </div>
   </section>
@@ -90,4 +194,37 @@ const enquiryUrl = getWhatsAppUrl(
       </div>
     </section>
   )}
+
+  <script is:inline>
+    const mainImage = document.getElementById("product-main-image");
+    const selectedColour = document.getElementById("selected-colour");
+    const galleryButtons = document.querySelectorAll("[data-gallery-thumb]");
+    const colourButtons = document.querySelectorAll("[data-color-option]");
+
+    function setImage(button) {
+      const image = button.getAttribute("data-gallery-image");
+      if (mainImage instanceof HTMLImageElement && image) {
+        mainImage.src = image;
+      }
+    }
+
+    galleryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        galleryButtons.forEach((item) => item.classList.remove("border-primary"));
+        button.classList.add("border-primary");
+        setImage(button);
+      });
+    });
+
+    colourButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        colourButtons.forEach((item) => item.classList.remove("border-primary"));
+        button.classList.add("border-primary");
+        setImage(button);
+        if (selectedColour) {
+          selectedColour.textContent = button.getAttribute("data-color-name") || "";
+        }
+      });
+    });
+  </script>
 </BaseLayout>

@@ -1,7 +1,6 @@
 ---
-import ProductCard from "@/components/ProductCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getDepartments, slugify } from "@/lib/catalog";
+import { getDepartments } from "@/lib/catalog";
 
 export function getStaticPaths() {
   return getDepartments().map((department) => ({
@@ -31,19 +30,35 @@ const { department } = Astro.props;
     </div>
   </section>
 
-  <section class="border-y border-border bg-card/55">
+  <section
+    class="border-y border-border bg-card/55"
+    data-catalog-browser
+    data-filter-mode="type"
+    data-scope-department={department.slug}
+    data-default-heading={department.name}
+  >
     <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
       <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between gap-4">
+        <div class="grid gap-3 sm:grid-cols-[1fr_auto_auto] sm:items-end">
           <div>
             <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Filter & sort</p>
-            <p id="department-count" class="mt-1 text-sm font-medium text-foreground">{department.count} products</p>
+            <p data-catalog-count class="mt-1 text-sm font-medium text-foreground">{department.count} products</p>
           </div>
 
-          <label class="flex items-center gap-2 text-sm text-muted-foreground">
-            <span class="hidden sm:inline">Sort</span>
+          <label class="flex flex-col gap-1 text-sm text-muted-foreground sm:min-w-52">
+            <span>Search</span>
+            <input
+              data-catalog-search
+              type="search"
+              placeholder={`Search ${department.name}`}
+              class="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </label>
+
+          <label class="flex flex-col gap-1 text-sm text-muted-foreground sm:min-w-48">
+            <span>Sort</span>
             <select
-              id="sort-products"
+              data-catalog-sort
               class="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="featured">Featured</option>
@@ -55,122 +70,30 @@ const { department } = Astro.props;
           </label>
         </div>
 
-        <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
-          <button
-            type="button"
-            data-filter="all"
-            aria-pressed="true"
-            class="shrink-0 rounded-md border border-foreground bg-foreground px-3 py-2 text-sm font-medium text-background"
-          >
-            All
-          </button>
-        {department.types.map((type) => (
-          <button
-            type="button"
-            data-filter={type.slug}
-            aria-pressed="false"
-            class="shrink-0 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium text-foreground hover:bg-accent"
-          >
-            {type.name}
-          </button>
-        ))}
-        </div>
+        <div data-catalog-filters class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"></div>
       </div>
     </div>
-  </section>
 
-  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-    <div class="mb-8">
-      <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Catalogue</p>
-      <h2 id="department-heading" class="text-4xl font-semibold text-foreground">{department.name}</h2>
-    </div>
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Catalogue</p>
+        <h2 data-catalog-heading class="text-4xl font-semibold text-foreground">{department.name}</h2>
+      </div>
 
-    <div id="products-grid" class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-      {department.products.map((product, index) => (
-        <div
-          data-product-card
-          data-index={index}
-          data-name={product.name}
-          data-price={product.price}
-          data-rating={product.rating}
-          data-type={slugify(product.type)}
-        >
-          <ProductCard product={product} />
-        </div>
-      ))}
+      <div data-catalog-grid class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3"></div>
+      <p data-catalog-status class="hidden rounded-lg border border-border bg-background p-6 text-center text-sm text-muted-foreground">
+        No products found.
+      </p>
+      <div data-catalog-sentinel class="h-10"></div>
+      <button
+        type="button"
+        data-catalog-load-more
+        class="mx-auto mt-6 hidden min-h-11 items-center justify-center rounded-md border border-border bg-background px-5 text-sm font-medium text-foreground hover:bg-accent"
+      >
+        Load more
+      </button>
     </div>
   </section>
 
-  <script is:inline>
-    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-    const sortSelect = document.getElementById("sort-products");
-    const grid = document.getElementById("products-grid");
-    const countLabel = document.getElementById("department-count");
-    const heading = document.getElementById("department-heading");
-    const cards = Array.from(document.querySelectorAll("[data-product-card]"));
-    const defaultHeading = heading?.textContent || "Products";
-    let activeFilter = "all";
-
-    function applyControls() {
-      if (!grid) return;
-
-      const visibleCards = cards.filter((card) => {
-        const matches = activeFilter === "all" || card.getAttribute("data-type") === activeFilter;
-        card.classList.toggle("hidden", !matches);
-        return matches;
-      });
-
-      const sortedCards = [...visibleCards].sort((a, b) => {
-        const sortValue = sortSelect instanceof HTMLSelectElement ? sortSelect.value : "featured";
-        const priceA = Number(a.getAttribute("data-price"));
-        const priceB = Number(b.getAttribute("data-price"));
-        const ratingA = Number(a.getAttribute("data-rating"));
-        const ratingB = Number(b.getAttribute("data-rating"));
-        const nameA = a.getAttribute("data-name") || "";
-        const nameB = b.getAttribute("data-name") || "";
-
-        if (sortValue === "price-low") return priceA - priceB;
-        if (sortValue === "price-high") return priceB - priceA;
-        if (sortValue === "rating") return ratingB - ratingA;
-        if (sortValue === "name") return nameA.localeCompare(nameB);
-        return Number(a.getAttribute("data-index")) - Number(b.getAttribute("data-index"));
-      });
-
-      sortedCards.forEach((card) => grid.appendChild(card));
-
-      const activeButton = filterButtons.find(
-        (button) => button.getAttribute("data-filter") === activeFilter
-      );
-      const activeName = activeFilter === "all" ? defaultHeading : activeButton?.textContent?.trim();
-
-      if (countLabel) {
-        countLabel.textContent = `${visibleCards.length} product${visibleCards.length === 1 ? "" : "s"}`;
-      }
-
-      if (heading && activeName) {
-        heading.textContent = activeName;
-      }
-    }
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeFilter = button.getAttribute("data-filter") || "all";
-
-        filterButtons.forEach((item) => {
-          const isActive = item === button;
-          item.setAttribute("aria-pressed", String(isActive));
-          item.classList.toggle("border-foreground", isActive);
-          item.classList.toggle("bg-foreground", isActive);
-          item.classList.toggle("text-background", isActive);
-          item.classList.toggle("border-border", !isActive);
-          item.classList.toggle("bg-background", !isActive);
-          item.classList.toggle("text-foreground", !isActive);
-        });
-
-        applyControls();
-      });
-    });
-
-    sortSelect?.addEventListener("change", applyControls);
-  </script>
+  <script src="/catalog-browser.js" defer></script>
 </BaseLayout>

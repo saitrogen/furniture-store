@@ -72,7 +72,7 @@ export default function ShadcnNavbar() {
 
           {/* Dropdown */}
           <div className="invisible absolute left-0 top-full z-50 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-            <div className="w-[53rem] rounded-lg border bg-background p-6 shadow-xl">
+            <div className="w-212 rounded-lg border bg-background p-6 shadow-xl">
             <div className="grid grid-cols-4 gap-8">
                 {category.departments.map((department) => (
                   <div key={department.slug}>
