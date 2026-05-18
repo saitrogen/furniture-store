@@ -1,6 +1,18 @@
 import type { NavLink, NavSection } from "@/components/react/SiteHeader"
 
-/* Page-level links (top bar) */
+/*
+  Department slugs are derived from product.json via slugify(department):
+  Living Room Furniture → living-room-furniture
+  Bedroom Furniture     → bedroom-furniture
+  Kitchen & Dining Furniture → kitchen-and-dining-furniture
+  Office Furniture      → office-furniture
+  Storage Furniture     → storage-furniture
+  Outdoor Furniture     → outdoor-furniture
+  Home Lighting         → home-lighting
+  Rugs                  → rugs
+  Decor Accessories     → decor-accessories
+*/
+
 export const navLinks: NavLink[] = [
   { label: "Collection", href: "/collection" },
   { label: "About", href: "/about" },
@@ -8,15 +20,6 @@ export const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ]
 
-/*
-  Strip → Furniture | Lighting | Outdoor | Home Décor | Sale
-            ↓ hover
-          Mega-menu columns = groups (Living Room, Bedroom…)
-            ↓ click heading
-          /collection/[group.slug]
-            ↓ click item
-          /collection/[group.slug]/[item.slug]
-*/
 export const navSections: NavSection[] = [
   {
     name: "New In",
@@ -24,12 +27,10 @@ export const navSections: NavSection[] = [
     groups: [
       {
         heading: "Latest Collections",
-        slug: "new-arrivals",
+        slug: "living-room-furniture",
         items: [
-          { name: "Oasis Collection", slug: "oasis-collection" },
-          { name: "Terra Collection", slug: "terra-collection" },
-          { name: "Astra Collection", slug: "astra-collection" },
-          { name: "Dawn Collection", slug: "dawn-collection" },
+          { name: "Sofas", slug: "sofas" },
+          { name: "Accent Chairs", slug: "accent-chairs" },
         ],
       },
       {
@@ -38,8 +39,8 @@ export const navSections: NavSection[] = [
         items: [
           { name: "Living Room", slug: "living-room-furniture" },
           { name: "Bedroom", slug: "bedroom-furniture" },
-          { name: "Dining", slug: "dining-room-furniture" },
-          { name: "Study", slug: "study-furniture" },
+          { name: "Kitchen & Dining", slug: "kitchen-and-dining-furniture" },
+          { name: "Office", slug: "office-furniture" },
         ],
       },
     ],
@@ -47,7 +48,7 @@ export const navSections: NavSection[] = [
       {
         image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop",
         caption: "Shop New Arrivals",
-        href: "/collection/new-arrivals",
+        href: "/collection",
       },
     ],
   },
@@ -62,8 +63,7 @@ export const navSections: NavSection[] = [
           { name: "Sofas", slug: "sofas" },
           { name: "Sectionals", slug: "sectionals" },
           { name: "Coffee Tables", slug: "coffee-tables" },
-          { name: "TV Units", slug: "tv-units" },
-          { name: "Recliners", slug: "recliners" },
+          { name: "TV Stands", slug: "tv-stands" },
           { name: "Accent Chairs", slug: "accent-chairs" },
         ],
       },
@@ -72,41 +72,32 @@ export const navSections: NavSection[] = [
         slug: "bedroom-furniture",
         items: [
           { name: "Beds", slug: "beds" },
-          { name: "Wardrobes", slug: "wardrobes" },
           { name: "Dressers", slug: "dressers" },
           { name: "Nightstands", slug: "nightstands" },
-          { name: "Storage Beds", slug: "storage-beds" },
         ],
       },
       {
-        heading: "Dining",
-        slug: "dining-room-furniture",
+        heading: "Kitchen & Dining",
+        slug: "kitchen-and-dining-furniture",
         items: [
           { name: "Dining Tables", slug: "dining-tables" },
           { name: "Dining Chairs", slug: "dining-chairs" },
-          { name: "Dining Sets", slug: "dining-sets" },
-          { name: "Sideboards", slug: "sideboards" },
-          { name: "Bar Stools", slug: "bar-stools" },
         ],
       },
       {
-        heading: "Study",
-        slug: "study-furniture",
+        heading: "Office",
+        slug: "office-furniture",
         items: [
           { name: "Desks", slug: "desks" },
-          { name: "Bookcases", slug: "bookcases" },
-          { name: "Ergonomic Chairs", slug: "ergonomic-chairs" },
-          { name: "Filing Cabinets", slug: "filing-cabinets" },
+          { name: "Office Chairs", slug: "office-chairs" },
         ],
       },
       {
         heading: "Storage",
         slug: "storage-furniture",
         items: [
-          { name: "Shoe Racks", slug: "shoe-racks" },
-          { name: "Cabinets", slug: "cabinets" },
-          { name: "Shelving Units", slug: "shelving-units" },
-          { name: "Room Dividers", slug: "room-dividers" },
+          { name: "Bookcases", slug: "bookcases" },
+          { name: "Sideboards", slug: "sideboards" },
         ],
       },
     ],
@@ -120,40 +111,22 @@ export const navSections: NavSection[] = [
   },
   {
     name: "Lighting",
-    slug: "lighting",
+    slug: "home-lighting",
     groups: [
       {
-        heading: "Ceiling & Pendant",
-        slug: "lighting",
-        items: [
-          { name: "Pendant Lights", slug: "pendant-lights" },
-          { name: "Flush Mount", slug: "flush-mount" },
-          { name: "Chandeliers", slug: "chandeliers" },
-        ],
-      },
-      {
-        heading: "Lamps",
-        slug: "lighting",
+        heading: "All Lighting",
+        slug: "home-lighting",
         items: [
           { name: "Floor Lamps", slug: "floor-lamps" },
-          { name: "Table Lamps", slug: "table-lamps" },
-          { name: "Desk Lamps", slug: "desk-lamps" },
-        ],
-      },
-      {
-        heading: "Outdoor Lighting",
-        slug: "lighting",
-        items: [
-          { name: "Wall Sconces", slug: "wall-sconces" },
-          { name: "String Lights", slug: "string-lights" },
+          { name: "Pendant Lights", slug: "pendant-lights" },
         ],
       },
     ],
     featured: [
       {
-        image: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop",
         caption: "Shop Lighting",
-        href: "/collection/lighting",
+        href: "/collection/home-lighting",
       },
     ],
   },
@@ -162,21 +135,11 @@ export const navSections: NavSection[] = [
     slug: "outdoor-furniture",
     groups: [
       {
-        heading: "Seating",
-        slug: "outdoor-furniture",
-        items: [
-          { name: "Balcony Sets", slug: "balcony-sets" },
-          { name: "Lounge Chairs", slug: "lounge-chairs" },
-          { name: "Swings", slug: "swings" },
-        ],
-      },
-      {
-        heading: "Dining",
+        heading: "Outdoor Living",
         slug: "outdoor-furniture",
         items: [
           { name: "Outdoor Dining Sets", slug: "outdoor-dining-sets" },
-          { name: "Outdoor Tables", slug: "outdoor-tables" },
-          { name: "Outdoor Chairs", slug: "outdoor-chairs" },
+          { name: "Outdoor Sofa Sets", slug: "outdoor-sofa-sets" },
         ],
       },
     ],
@@ -187,23 +150,17 @@ export const navSections: NavSection[] = [
     slug: "decor",
     groups: [
       {
-        heading: "Soft Furnishings",
-        slug: "soft-furnishings",
+        heading: "Rugs",
+        slug: "rugs",
         items: [
-          { name: "Rugs", slug: "rugs" },
-          { name: "Cushions", slug: "cushions" },
-          { name: "Throws", slug: "throws" },
-          { name: "Curtains", slug: "curtains" },
+          { name: "Area Rugs", slug: "area-rugs" },
         ],
       },
       {
         heading: "Accents",
-        slug: "accents",
+        slug: "decor-accessories",
         items: [
           { name: "Vases", slug: "vases" },
-          { name: "Wall Art", slug: "wall-art" },
-          { name: "Mirrors", slug: "mirrors" },
-          { name: "Sculptures", slug: "sculptures" },
         ],
       },
     ],
@@ -212,17 +169,7 @@ export const navSections: NavSection[] = [
   {
     name: "Sale",
     slug: "sale",
-    groups: [
-      {
-        heading: "Clearance",
-        slug: "sale",
-        items: [
-          { name: "Deals of the Day", slug: "deals-of-the-day" },
-          { name: "Clearance Sale", slug: "clearance-sale" },
-          { name: "Best Buys", slug: "best-buys" },
-        ],
-      },
-    ],
+    groups: [],
     featured: [],
   },
 ]
