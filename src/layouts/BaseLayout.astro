@@ -1,14 +1,14 @@
 ---
 import Footer from "@/components/Footer.astro";
 import "@/styles/global.css";
-import ShadcnNavbar from "@/components/react/ShadcnNavbar";
+import SiteHeader from "@/components/react/SiteHeader";
+import { navLinks, navSections } from "@/content/localData/nav";
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
 }
-// Todo: add og image in public folder
 const {
   title,
   description = "Premium handcrafted furniture from Nilambur, Kerala. Factory-direct to your home.",
@@ -18,6 +18,7 @@ const {
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : Astro.url;
+
 ---
 
 <!doctype html>
@@ -52,7 +53,13 @@ const canonicalURL = Astro.site
     class="bg-background text-foreground font-sans antialiased min-h-screen"
   >
 
-<ShadcnNavbar client:load />
+<SiteHeader
+      client:load
+      siteName="HOMEIX"
+      siteHref="/"
+      navLinks={navLinks}
+      sections={navSections}
+    />
 
     <main>
       <slot />
