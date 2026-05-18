@@ -1,94 +1,76 @@
 ---
-import ProductCard from "@/components/ProductCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import HeroBanner from "@/components/react/HeroBanner";
+import CategoryGrid from "@/components/react/CategoryGrid";
+import ProductCarousel from "@/components/react/ProductCarousel";
+import BentoGrid from "@/components/BentoGrid.astro";
 import { heroSlides, heroBadges } from "@/content/localData/hero";
-import { getDepartments, getFeaturedProducts } from "@/lib/catalog";
+import { shopCategories } from "@/content/localData/shopCategories";
+import { carouselConfigs } from "@/content/localData/carousels";
+import { bentoTiles } from "@/content/localData/bento";
+import type { CarouselProduct } from "@/components/react/ProductCarousel";
+import products from "@/content/data/new/product.json";
 
-const featuredProducts = getFeaturedProducts(6);
-const allDepartments = getDepartments();
-const departments = allDepartments.slice(0, 6);
+const productMap = new Map(products.map((p) => [p.id, p]));
+
+function resolveProducts(ids: string[]): CarouselProduct[] {
+  return ids
+    .map((id) => productMap.get(id))
+    .filter(Boolean)
+    .map((p) => ({
+      name: p!.name,
+      slug: p!.slug,
+      image: p!.image,
+      price: p!.price,
+      rating: p!.rating,
+      type: p!.type,
+    }));
+}
+
+const [newArrivalsConfig, trendingConfig] = carouselConfigs;
+const newArrivalsProducts = resolveProducts(newArrivalsConfig.productIds);
+const trendingProducts   = resolveProducts(trendingConfig.productIds);
 ---
 
 <BaseLayout
-  title="Furniture Showcase"
-  description="Explore HOMEIX furniture collections and enquire directly on WhatsApp."
+  title="Home"
+  description="Premium handcrafted furniture — factory-direct from Nilambur, Kerala."
 >
-  <!-- Hero Banner — full bleed on mobile, contained on desktop -->
+  <!-- Hero -->
   <section class="lg:mx-auto lg:max-w-7xl lg:px-6 lg:pt-5">
     <HeroBanner client:load slides={heroSlides} badges={heroBadges} />
   </section>
 
-  <!-- Shop by Room -->
-  <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-6">
-    <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-      <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Shop by room</p>
-        <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">Collections</h2>
-      </div>
-      <a href="/collection" class="text-sm font-medium text-primary hover:underline">See all collections</a>
-    </div>
+  <!-- Shop by Category -->
+  <CategoryGrid
+    client:load
+    label="Quick navigation"
+    title="Shop by Category"
+    categories={shopCategories}
+  />
 
-    <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-      {departments.map((department) => (
-        <a href={`/collection/${department.slug}`} class="group overflow-hidden rounded-lg border border-border bg-card">
-          <div class="aspect-square overflow-hidden bg-muted sm:aspect-16/10">
-            <img
-              src={department.image}
-              alt={department.name}
-              loading="lazy"
-              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-            />
-          </div>
-          <div class="flex items-center justify-between gap-2 p-3 sm:gap-4 sm:p-4">
-            <div class="min-w-0">
-              <h3 class="line-clamp-2 text-base font-semibold leading-tight text-foreground sm:text-xl">{department.name}</h3>
-              <p class="text-xs text-muted-foreground sm:text-sm">{department.count} products</p>
-            </div>
-            <span class="text-lg text-primary sm:text-xl">→</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+  <!-- New Arrivals -->
+  <ProductCarousel
+    client:load
+    title={newArrivalsConfig.title}
+    subtitle={newArrivalsConfig.subtitle}
+    viewAllHref={newArrivalsConfig.viewAllHref}
+    products={newArrivalsProducts}
+  />
 
-  <!-- Featured Products -->
-  <section class="border-y border-border bg-card/60">
-    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-6">
-      <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">Popular now</p>
-          <h2 class="text-4xl font-semibold text-foreground">Featured furniture</h2>
-        </div>
-        <a href="/collection" class="text-sm font-medium text-primary hover:underline">Browse all products</a>
-      </div>
+  <!-- Editorial bento -->
+  <BentoGrid
+    label="Our story"
+    title="Built different"
+    tiles={bentoTiles}
+  />
 
-      <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-        {featuredProducts.map((product) => <ProductCard product={product} />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-6">
-    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-muted-foreground">How enquiry works</p>
-        <h2 class="mt-2 text-4xl font-semibold text-foreground">Simple, direct, no cart needed.</h2>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-3">
-        {["Open a product", "Send WhatsApp enquiry", "Confirm details"].map((step, index) => (
-          <div class="rounded-lg border border-border bg-card p-5">
-            <p class="text-sm text-muted-foreground">0{index + 1}</p>
-            <h3 class="mt-3 text-xl font-semibold text-foreground">{step}</h3>
-            <p class="mt-2 text-sm leading-6 text-muted-foreground">
-              {index === 0 && "Review images, product type, rating, and guide pricing."}
-              {index === 1 && "The message is pre-filled with the product name for faster conversation."}
-              {index === 2 && "Ask about finishes, availability, delivery, or custom sizing."}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- Trending Now -->
+  <ProductCarousel
+    client:load
+    title={trendingConfig.title}
+    subtitle={trendingConfig.subtitle}
+    viewAllHref={trendingConfig.viewAllHref}
+    products={trendingProducts}
+  />
 </BaseLayout>

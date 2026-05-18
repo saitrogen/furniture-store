@@ -1,0 +1,106 @@
+---
+import type { BentoTile } from "@/content/localData/bento"
+
+interface Props {
+  label?: string
+  title?: string
+  tiles: BentoTile[]
+}
+
+const { label = "Our story", title = "Built different", tiles } = Astro.props
+
+const bgClass: Record<string, string> = {
+  dark: "bg-foreground",
+  primary: "bg-primary",
+  muted: "bg-secondary",
+}
+
+const textClass: Record<string, string> = {
+  dark: "text-primary-foreground",
+  primary: "text-primary-foreground",
+  muted: "text-foreground",
+}
+
+const subClass: Record<string, string> = {
+  dark: "text-primary-foreground/70",
+  primary: "text-primary-foreground/70",
+  muted: "text-muted-foreground",
+}
+
+const iconClass: Record<string, string> = {
+  dark: "text-primary-foreground/20",
+  primary: "text-primary-foreground/25",
+  muted: "text-foreground/15",
+}
+---
+
+<section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-6">
+  <div class="mb-6 sm:mb-8">
+    <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground sm:text-sm">{label}</p>
+    <h2 class="mt-0.5 font-heading text-2xl font-semibold text-foreground sm:text-3xl lg:text-4xl">
+      {title}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+    {tiles.map((tile) => (
+      <div
+        class={`relative overflow-hidden rounded-2xl ${tile.gridClass} ${tile.image ? "" : bgClass[tile.theme]}`}
+      >
+        {/* Background image */}
+        {tile.image && (
+          <img
+            src={tile.image}
+            alt={tile.heading}
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
+
+        {/* Overlay for image tiles */}
+        {tile.image && (
+          <div class="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/20 to-transparent" />
+        )}
+
+        {/* Content — justify-end for image tiles, justify-center for colour tiles */}
+        <div
+          class={[
+            "relative z-10 flex h-full flex-col p-4 sm:p-5 min-h-45 md:min-h-55",
+            tile.image ? "justify-end" : "justify-center",
+          ].join(" ")}
+        >
+          {/* Decorative icon (non-image tiles only) */}
+          {tile.icon && !tile.image && (
+            <span
+              class={`material-symbols-outlined mb-3 select-none text-6xl sm:text-7xl ${iconClass[tile.theme]}`}
+              aria-hidden="true"
+            >
+              {tile.icon}
+            </span>
+          )}
+
+          <div>
+            <p class={`font-heading text-lg font-bold leading-tight sm:text-xl ${textClass[tile.theme]}`}>
+              {tile.heading}
+            </p>
+
+            {tile.subheading && (
+              <p class={`mt-1 text-xs leading-relaxed sm:text-sm ${subClass[tile.theme]}`}>
+                {tile.subheading}
+              </p>
+            )}
+
+            {tile.cta && (
+              <a
+                href={tile.cta.href}
+                class={`mt-3 inline-flex items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80 ${textClass[tile.theme]}`}
+              >
+                {tile.cta.label} →
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
