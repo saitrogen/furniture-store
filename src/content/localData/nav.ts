@@ -1,7 +1,7 @@
 import type { NavLink, NavSection } from "@/components/react/SiteHeader"
 
 /*
-  Department slugs are derived from product.json via slugify(department):
+  Department slugs are derived from localData/products.ts via slugify(department):
   Living Room Furniture → living-room-furniture
   Bedroom Furniture     → bedroom-furniture
   Kitchen & Dining Furniture → kitchen-and-dining-furniture

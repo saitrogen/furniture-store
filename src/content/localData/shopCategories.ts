@@ -5,7 +5,7 @@ export interface ShopCategory {
   badge?: string
 }
 
-/* Slugs match actual product.json departments via slugify() */
+/* Slugs match localData/products.ts departments via slugify() */
 export const shopCategories: ShopCategory[] = [
   {
     name: "Sofas",

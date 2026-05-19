@@ -21,9 +21,15 @@ export default function CategoryGrid({
 }: CategoryGridProps) {
   const [showAll, setShowAll] = useState(false)
 
-  /* 3-col grid on mobile → 3 items per row */
-  const mobileVisible = mobileInitialRows * 3
-  const hasMore = categories.length > mobileVisible
+  const initialRows = mobileInitialRows
+  /* 3/4/6 columns by breakpoint */
+  const baseVisible = initialRows * 3
+  const smVisible = initialRows * 4
+  const lgVisible = initialRows * 6
+  const showOnBase = categories.length > baseVisible
+  const showOnSm = categories.length > smVisible
+  const showOnLg = categories.length > lgVisible
+  const hasMore = showOnBase
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-6">
@@ -53,8 +59,16 @@ export default function CategoryGrid({
             href={cat.href}
             className={cn(
               "group flex-col items-center gap-2",
-              /* On mobile: hide items beyond the initial rows unless showAll */
-              i >= mobileVisible && !showAll ? "hidden sm:flex" : "flex",
+              /* Hide beyond the initial rows per breakpoint unless expanded */
+              showAll
+                ? "flex"
+                : i < baseVisible
+                  ? "flex"
+                  : i < smVisible
+                    ? "hidden sm:flex"
+                    : i < lgVisible
+                      ? "hidden lg:flex"
+                      : "hidden",
             )}
           >
             <div className="relative w-full overflow-hidden rounded-xl bg-secondary aspect-square">
@@ -78,15 +92,22 @@ export default function CategoryGrid({
         ))}
       </div>
 
-      {/* Show more — mobile only, disappears once expanded */}
+      {/* Load more — disappears once expanded */}
       {hasMore && !showAll && (
-        <div className="mt-6 flex justify-center sm:hidden">
+        <div
+          className={cn(
+            "mt-6 flex justify-center",
+            !showOnBase && "hidden",
+            showOnBase && !showOnSm && "sm:hidden",
+            showOnSm && !showOnLg && "lg:hidden",
+          )}
+        >
           <button
             type="button"
             onClick={() => setShowAll(true)}
             className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Show more <ChevronDown className="size-4" />
+            Load more <ChevronDown className="size-4" />
           </button>
         </div>
       )}

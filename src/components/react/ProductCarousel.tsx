@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, formatPrice } from "@/lib/utils"
 
 /* Prop types */
 export interface CarouselProduct {
@@ -19,21 +19,17 @@ export interface ProductCarouselProps {
   products: CarouselProduct[]
 }
 
-function formatPrice(n: number) {
-  return "₹" + n.toLocaleString("en-IN")
-}
-
 function Card({ product }: { product: CarouselProduct }) {
   return (
     <a
       href={`/products/${product.slug}`}
-      /* 24vw on mobile ≈ 93px at 390px → ~3.5 cards visible */
-      className="group w-[24vw] shrink-0 snap-start sm:w-50 lg:w-60"
+      /* 45vw on mobile ≈ 176px at 390px → 2 cards visible; 3 at sm/md; 4 at lg+ */
+      className="group w-[45vw] shrink-0 snap-start sm:w-48 md:w-56 lg:w-60 xl:w-72"
     >
       {/* Image */}
       <div className="overflow-hidden rounded-xl bg-secondary">
-        {/* Square on mobile (better at small size), 4:3 on desktop */}
-        <div className="aspect-square overflow-hidden sm:aspect-4/3">
+        {/* Square on all screen sizes to match reference aesthetic */}
+        <div className="aspect-square overflow-hidden">
           <img
             src={product.image}
             alt={product.name}

@@ -1,4 +1,5 @@
-import products from "@/content/data/new/product.json";
+import { products, type Product } from "@/content/localData/products";
+export type { Product };
 
 export const site = {
   name: "HOMEIX",
@@ -10,7 +11,6 @@ export const site = {
   location: "Nilambur, Kerala",
 };
 
-export type Product = (typeof products)[number];
 export type CatalogProduct = Product & {
   departmentSlug: string;
   typeSlug: string;

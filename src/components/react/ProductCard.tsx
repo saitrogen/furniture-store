@@ -1,5 +1,5 @@
 import { Heart, Star } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, formatPrice } from "@/lib/utils"
 
 /* Prop types */
 export interface ProductCardItem {
@@ -24,7 +24,7 @@ export default function ProductCard({
   item: ProductCardItem
   className?: string
 }) {
-  const price = "₹" + item.price.toLocaleString("en-IN")
+  const price = formatPrice(item.price)
 
   return (
     <article
