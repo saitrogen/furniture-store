@@ -33,6 +33,23 @@ const SORT_OPTIONS = [
 
 type SortValue = (typeof SORT_OPTIONS)[number]["value"]
 
+const PRICE_RANGES = [
+  { value: "under-500", label: "Under ₹500", test: (p: number) => p < 500 },
+  { value: "500-1000", label: "₹500 – ₹1,000", test: (p: number) => p >= 500 && p < 1000 },
+  { value: "1000-1500", label: "₹1,000 – ₹1,500", test: (p: number) => p >= 1000 && p < 1500 },
+  { value: "above-1500", label: "Above ₹1,500", test: (p: number) => p >= 1500 },
+] as const
+
+type PriceRange = (typeof PRICE_RANGES)[number]["value"] | null
+
+const RATING_OPTIONS = [
+  { value: 4.5, label: "4.5 & above" },
+  { value: 4.0, label: "4.0 & above" },
+  { value: 3.5, label: "3.5 & above" },
+] as const
+
+type MinRating = (typeof RATING_OPTIONS)[number]["value"] | null
+
 function applySort(list: GridProduct[], by: SortValue): GridProduct[] {
   const copy = [...list]
   if (by === "price-low") return copy.sort((a, b) => a.price - b.price)
@@ -57,7 +74,7 @@ function Checkbox({ checked, onChange }: { checked: boolean; onChange: () => voi
       aria-checked={checked}
       onClick={onChange}
       className={cn(
-        "flex size-[18px] shrink-0 items-center justify-center rounded border-2 transition-colors",
+        "flex size-4.5 shrink-0 items-center justify-center rounded border-2 transition-colors",
         checked ? "border-primary bg-primary" : "border-border bg-background",
       )}
     >
@@ -75,12 +92,44 @@ function Radio({ checked }: { checked: boolean }) {
   return (
     <span
       className={cn(
-        "flex size-[18px] shrink-0 items-center justify-center rounded-full border-2 transition-colors",
+        "flex size-4.5 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
         checked ? "border-primary" : "border-border",
       )}
     >
       {checked && <span className="size-2 rounded-full bg-primary" />}
     </span>
+  )
+}
+
+/* Collapsible accordion section */
+function AccordionSection({
+  title,
+  children,
+  defaultOpen = true,
+  hasActive = false,
+}: {
+  title: string
+  children: React.ReactNode
+  defaultOpen?: boolean
+  hasActive?: boolean
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+  return (
+    <div className="border-b border-border">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between py-3.5 text-left"
+      >
+        <span className={cn("text-sm font-semibold", hasActive ? "text-primary" : "text-foreground")}>
+          {title}
+        </span>
+        <ChevronDown
+          className={cn("size-4 shrink-0 text-muted-foreground transition-transform duration-200", open && "rotate-180")}
+        />
+      </button>
+      {open && <div className="pb-3">{children}</div>}
+    </div>
   )
 }
 
@@ -92,6 +141,10 @@ function FilterSidebar({
   onClear,
   sortBy,
   onSort,
+  priceRange,
+  onPriceRange,
+  minRating,
+  onRating,
 }: {
   filterValues: { value: string; count: number }[]
   activeFilters: string[]
@@ -99,14 +152,15 @@ function FilterSidebar({
   onClear: () => void
   sortBy: SortValue
   onSort: (v: SortValue) => void
+  priceRange: PriceRange
+  onPriceRange: (v: PriceRange) => void
+  minRating: MinRating
+  onRating: (v: MinRating) => void
 }) {
   return (
     <aside className="hidden w-56 shrink-0 lg:block xl:w-64">
       {/* Sort */}
-      <div className="mb-5 border-b border-border pb-5">
-        <h3 className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-foreground">
-          Sort By
-        </h3>
+      <AccordionSection title="Sort By">
         {SORT_OPTIONS.map((opt) => (
           <button
             key={opt.value}
@@ -120,21 +174,16 @@ function FilterSidebar({
             </span>
           </button>
         ))}
-      </div>
+      </AccordionSection>
 
       {/* Category filter */}
       {filterValues.length > 0 && (
-        <div>
-          <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-foreground">
-              Category
-            </h3>
-            {activeFilters.length > 0 && (
-              <button type="button" onClick={onClear} className="text-xs text-muted-foreground hover:text-foreground">
-                Clear
-              </button>
-            )}
-          </div>
+        <AccordionSection title="Category" hasActive={activeFilters.length > 0}>
+          {activeFilters.length > 0 && (
+            <button type="button" onClick={onClear} className="mb-2 text-xs text-primary hover:underline">
+              Clear all
+            </button>
+          )}
           {filterValues.map((f) => (
             <button
               key={f.value}
@@ -147,8 +196,42 @@ function FilterSidebar({
               <span className="text-xs text-muted-foreground">({f.count})</span>
             </button>
           ))}
-        </div>
+        </AccordionSection>
       )}
+
+      {/* Price Range */}
+      <AccordionSection title="Price Range" hasActive={priceRange !== null}>
+        {PRICE_RANGES.map((r) => (
+          <button
+            key={r.value}
+            type="button"
+            onClick={() => onPriceRange(priceRange === r.value ? null : r.value)}
+            className="flex w-full items-center gap-3 py-1.5 text-left"
+          >
+            <Radio checked={priceRange === r.value} />
+            <span className={cn("text-sm", priceRange === r.value ? "font-medium text-foreground" : "text-muted-foreground")}>
+              {r.label}
+            </span>
+          </button>
+        ))}
+      </AccordionSection>
+
+      {/* Rating */}
+      <AccordionSection title="Rating" defaultOpen={false} hasActive={minRating !== null}>
+        {RATING_OPTIONS.map((r) => (
+          <button
+            key={r.value}
+            type="button"
+            onClick={() => onRating(minRating === r.value ? null : r.value)}
+            className="flex w-full items-center gap-3 py-1.5 text-left"
+          >
+            <Radio checked={minRating === r.value} />
+            <span className={cn("text-sm", minRating === r.value ? "font-medium text-foreground" : "text-muted-foreground")}>
+              {r.label}
+            </span>
+          </button>
+        ))}
+      </AccordionSection>
     </aside>
   )
 }
@@ -156,7 +239,7 @@ function FilterSidebar({
 /* ── Mobile: Sort bottom sheet ─────────────────────────────────── */
 function SortSheet({ sortBy, onSort, onClose }: { sortBy: SortValue; onSort: (v: SortValue) => void; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-[200] lg:hidden">
+    <div className="fixed inset-0 z-200 lg:hidden">
       <button type="button" aria-label="Close" className="absolute inset-0 bg-foreground/30 backdrop-blur-sm" onClick={onClose} />
       <div className="absolute bottom-0 left-0 right-0 rounded-t-2xl bg-background shadow-xl">
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
@@ -198,7 +281,7 @@ function FilterSheet({
   onClose: () => void
 }) {
   return (
-    <div className="fixed inset-0 z-[200] flex flex-col bg-background lg:hidden">
+    <div className="fixed inset-0 z-200 flex flex-col bg-background lg:hidden">
       <div className="flex h-14 shrink-0 items-center justify-between border-b border-border px-4">
         <h3 className="text-base font-semibold">Filters</h3>
         <button type="button" onClick={onClose} aria-label="Close"><X className="size-5" /></button>
@@ -207,7 +290,7 @@ function FilterSheet({
       {/* Two-panel body — matches Urban Ladder layout */}
       <div className="flex min-h-0 flex-1">
         {/* Left: category tabs */}
-        <div className="w-[110px] shrink-0 overflow-y-auto border-r border-border bg-muted/40">
+        <div className="w-27.5 shrink-0 overflow-y-auto border-r border-border bg-muted/40">
           <button
             type="button"
             className="w-full border-l-[3px] border-primary bg-background px-4 py-3.5 text-left text-sm font-semibold text-foreground"
@@ -256,6 +339,8 @@ export default function ProductGrid({
     initialFilter ? [initialFilter] : [],
   )
   const [sortBy, setSortBy] = useState<SortValue>("featured")
+  const [priceRange, setPriceRange] = useState<PriceRange>(null)
+  const [minRating, setMinRating] = useState<MinRating>(null)
   const [showing, setShowing] = useState(pageSize)
   const [sortOpen, setSortOpen] = useState(false)
   const [filterOpen, setFilterOpen] = useState(false)
@@ -273,16 +358,22 @@ export default function ProductGrid({
   }, [products, filterBy, filterKey])
 
   const filtered = useMemo(() => {
-    const base =
-      activeFilters.length > 0
-        ? products.filter((p) => activeFilters.includes((p[filterKey] ?? "") as string))
-        : products
+    let base = activeFilters.length > 0
+      ? products.filter((p) => activeFilters.includes((p[filterKey] ?? "") as string))
+      : products
+    if (priceRange !== null) {
+      const range = PRICE_RANGES.find((r) => r.value === priceRange)
+      if (range) base = base.filter((p) => range.test(p.price))
+    }
+    if (minRating !== null) {
+      base = base.filter((p) => p.rating >= minRating)
+    }
     return applySort(base, sortBy)
-  }, [products, filterBy, filterKey, activeFilters, sortBy])
+  }, [products, filterBy, filterKey, activeFilters, sortBy, priceRange, minRating])
 
   const visible = filtered.slice(0, showing)
   const hasMore = showing < filtered.length
-  const activeCount = activeFilters.length
+  const activeCount = activeFilters.length + (priceRange ? 1 : 0) + (minRating ? 1 : 0)
 
   function toggleFilter(val: string) {
     setActiveFilters((prev) => prev.includes(val) ? prev.filter((v) => v !== val) : [...prev, val])
@@ -291,6 +382,8 @@ export default function ProductGrid({
 
   function clearFilters() {
     setActiveFilters([])
+    setPriceRange(null)
+    setMinRating(null)
     setShowing(pageSize)
   }
 
@@ -311,6 +404,10 @@ export default function ProductGrid({
             onClear={clearFilters}
             sortBy={sortBy}
             onSort={setSortBy}
+            priceRange={priceRange}
+            onPriceRange={(v) => { setPriceRange(v); setShowing(pageSize) }}
+            minRating={minRating}
+            onRating={(v) => { setMinRating(v); setShowing(pageSize) }}
           />
         )}
 
