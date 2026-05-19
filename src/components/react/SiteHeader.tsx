@@ -32,6 +32,7 @@ export interface NavFeaturedCard {
 export interface NavSection {
   name: string            /* strip label: "Furniture", "Lighting" … */
   slug: string
+  href?: string           /* overrides the auto /collection/${slug} strip link */
   groups: NavGroup[]      /* mega-menu columns */
   featured?: NavFeaturedCard[]
 }
@@ -217,7 +218,7 @@ export default function SiteHeader({
                 {sections.map((section) => (
                   <li key={section.slug} onMouseEnter={() => handleEnter(section.slug)}>
                     <a
-                      href={`/collection/${section.slug}`}
+                      href={section.href ?? `/collection/${section.slug}`}
                       className={cn(
                         "relative flex items-center gap-1 py-3 text-sm font-medium transition-colors",
                         "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-200",
@@ -312,7 +313,7 @@ export default function SiteHeader({
             {sections.map((section) => (
               <section key={section.slug} className="border-b border-border px-4 py-4">
                 <a
-                  href={`/collection/${section.slug}`}
+                  href={section.href ?? `/collection/${section.slug}`}
                   onClick={() => setMenuOpen(false)}
                   className="mb-2 block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground"
                 >

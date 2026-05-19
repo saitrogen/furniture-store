@@ -1,16 +1,11 @@
 import type { NavLink, NavSection } from "@/components/react/SiteHeader"
 
 /*
-  Department slugs are derived from localData/products.ts via slugify(department):
-  Living Room Furniture → living-room-furniture
-  Bedroom Furniture     → bedroom-furniture
-  Kitchen & Dining Furniture → kitchen-and-dining-furniture
-  Office Furniture      → office-furniture
-  Storage Furniture     → storage-furniture
-  Outdoor Furniture     → outdoor-furniture
-  Home Lighting         → home-lighting
-  Rugs                  → rugs
-  Decor Accessories     → decor-accessories
+  Valid department slugs (derived from products.ts via slugify):
+  living-room-furniture, bedroom-furniture, kitchen-and-dining-furniture,
+  office-furniture, storage-furniture, outdoor-furniture, childrens-furniture
+
+  Sections without a matching department use href: to override the strip link.
 */
 
 export const navLinks: NavLink[] = [
@@ -24,23 +19,24 @@ export const navSections: NavSection[] = [
   {
     name: "New In",
     slug: "new-arrivals",
+    href: "/collection",
     groups: [
       {
-        heading: "Latest Collections",
+        heading: "Latest Additions",
         slug: "living-room-furniture",
         items: [
           { name: "Sofas", slug: "sofas" },
           { name: "Accent Chairs", slug: "accent-chairs" },
+          { name: "Coffee Tables", slug: "coffee-tables" },
         ],
       },
       {
-        heading: "Shop by Room",
-        slug: "collection",
+        heading: "Bedroom",
+        slug: "bedroom-furniture",
         items: [
-          { name: "Living Room", slug: "living-room-furniture" },
-          { name: "Bedroom", slug: "bedroom-furniture" },
-          { name: "Kitchen & Dining", slug: "kitchen-and-dining-furniture" },
-          { name: "Office", slug: "office-furniture" },
+          { name: "Beds", slug: "beds" },
+          { name: "Wardrobes", slug: "wardrobes" },
+          { name: "Dressers", slug: "dressers" },
         ],
       },
     ],
@@ -55,16 +51,17 @@ export const navSections: NavSection[] = [
   {
     name: "Furniture",
     slug: "furniture",
+    href: "/collection",
     groups: [
       {
         heading: "Living Room",
         slug: "living-room-furniture",
         items: [
           { name: "Sofas", slug: "sofas" },
-          { name: "Sectionals", slug: "sectionals" },
+          { name: "Accent Chairs", slug: "accent-chairs" },
           { name: "Coffee Tables", slug: "coffee-tables" },
           { name: "TV Stands", slug: "tv-stands" },
-          { name: "Accent Chairs", slug: "accent-chairs" },
+          { name: "Side Tables", slug: "side-tables" },
         ],
       },
       {
@@ -72,8 +69,8 @@ export const navSections: NavSection[] = [
         slug: "bedroom-furniture",
         items: [
           { name: "Beds", slug: "beds" },
+          { name: "Wardrobes", slug: "wardrobes" },
           { name: "Dressers", slug: "dressers" },
-          { name: "Nightstands", slug: "nightstands" },
         ],
       },
       {
@@ -82,6 +79,8 @@ export const navSections: NavSection[] = [
         items: [
           { name: "Dining Tables", slug: "dining-tables" },
           { name: "Dining Chairs", slug: "dining-chairs" },
+          { name: "Dining Sets", slug: "dining-sets" },
+          { name: "Bar Furniture", slug: "bar-furniture" },
         ],
       },
       {
@@ -97,7 +96,9 @@ export const navSections: NavSection[] = [
         slug: "storage-furniture",
         items: [
           { name: "Bookcases", slug: "bookcases" },
+          { name: "Cabinets", slug: "cabinets" },
           { name: "Sideboards", slug: "sideboards" },
+          { name: "Room Dividers", slug: "room-dividers" },
         ],
       },
     ],
@@ -110,27 +111,6 @@ export const navSections: NavSection[] = [
     ],
   },
   {
-    name: "Lighting",
-    slug: "home-lighting",
-    groups: [
-      {
-        heading: "All Lighting",
-        slug: "home-lighting",
-        items: [
-          { name: "Floor Lamps", slug: "floor-lamps" },
-          { name: "Pendant Lights", slug: "pendant-lights" },
-        ],
-      },
-    ],
-    featured: [
-      {
-        image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop",
-        caption: "Shop Lighting",
-        href: "/collection/home-lighting",
-      },
-    ],
-  },
-  {
     name: "Outdoor",
     slug: "outdoor-furniture",
     groups: [
@@ -138,29 +118,28 @@ export const navSections: NavSection[] = [
         heading: "Outdoor Living",
         slug: "outdoor-furniture",
         items: [
-          { name: "Outdoor Dining Sets", slug: "outdoor-dining-sets" },
-          { name: "Outdoor Sofa Sets", slug: "outdoor-sofa-sets" },
+          { name: "Outdoor Furniture", slug: "outdoor-furniture" },
         ],
       },
     ],
-    featured: [],
+    featured: [
+      {
+        image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop",
+        caption: "Shop Outdoor",
+        href: "/collection/outdoor-furniture",
+      },
+    ],
   },
   {
-    name: "Home Décor",
-    slug: "decor",
+    name: "Children's",
+    slug: "childrens-furniture",
     groups: [
       {
-        heading: "Rugs",
-        slug: "rugs",
+        heading: "Kids & Nursery",
+        slug: "childrens-furniture",
         items: [
-          { name: "Area Rugs", slug: "area-rugs" },
-        ],
-      },
-      {
-        heading: "Accents",
-        slug: "decor-accessories",
-        items: [
-          { name: "Vases", slug: "vases" },
+          { name: "Children's Furniture", slug: "childrens-furniture" },
+          { name: "Nursery Furniture", slug: "nursery-furniture" },
         ],
       },
     ],
@@ -169,6 +148,7 @@ export const navSections: NavSection[] = [
   {
     name: "Sale",
     slug: "sale",
+    href: "/collection",
     groups: [],
     featured: [],
   },

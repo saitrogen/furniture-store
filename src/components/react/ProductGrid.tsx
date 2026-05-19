@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useState, useTransition } from "react"
 import { ArrowUpDown, ChevronDown, LayoutGrid, SlidersHorizontal, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import ProductCard from "./ProductCard"
@@ -176,8 +176,8 @@ function FilterSidebar({
         ))}
       </AccordionSection>
 
-      {/* Category filter */}
-      {filterValues.length > 0 && (
+      {/* Category filter — hidden when only 1 value (e.g. type-scoped pages) */}
+      {filterValues.length > 1 && (
         <AccordionSection title="Category" hasActive={activeFilters.length > 0}>
           {activeFilters.length > 0 && (
             <button type="button" onClick={onClear} className="mb-2 text-xs text-primary hover:underline">
@@ -344,6 +344,7 @@ export default function ProductGrid({
   const [showing, setShowing] = useState(pageSize)
   const [sortOpen, setSortOpen] = useState(false)
   const [filterOpen, setFilterOpen] = useState(false)
+  const [, startTransition] = useTransition()
 
   const filterKey = filterBy === "department" ? "department" : "type"
 
@@ -376,15 +377,19 @@ export default function ProductGrid({
   const activeCount = activeFilters.length + (priceRange ? 1 : 0) + (minRating ? 1 : 0)
 
   function toggleFilter(val: string) {
-    setActiveFilters((prev) => prev.includes(val) ? prev.filter((v) => v !== val) : [...prev, val])
-    setShowing(pageSize)
+    startTransition(() => {
+      setActiveFilters((prev) => prev.includes(val) ? prev.filter((v) => v !== val) : [...prev, val])
+      setShowing(pageSize)
+    })
   }
 
   function clearFilters() {
-    setActiveFilters([])
-    setPriceRange(null)
-    setMinRating(null)
-    setShowing(pageSize)
+    startTransition(() => {
+      setActiveFilters([])
+      setPriceRange(null)
+      setMinRating(null)
+      setShowing(pageSize)
+    })
   }
 
   /* Grid cols depend on whether sidebar is present */
@@ -437,7 +442,7 @@ export default function ProductGrid({
           {visible.length > 0 ? (
             <>
               <div className={cn("grid gap-x-3 gap-y-6 sm:gap-x-4 sm:gap-y-8", gridColsClass)}>
-                {visible.map((product) => (
+                {visible.map((product, idx) => (
                   <ProductCard
                     key={product.slug}
                     item={{
@@ -447,7 +452,7 @@ export default function ProductGrid({
                       price: product.price,
                       rating: product.rating,
                       type: product.type,
-                      badge: getBadge(product, products.indexOf(product)),
+                      badge: getBadge(product, idx),
                     }}
                   />
                 ))}

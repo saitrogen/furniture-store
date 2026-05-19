@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { Heart, Star } from "lucide-react"
 import { cn, formatPrice } from "@/lib/utils"
 
@@ -17,7 +18,7 @@ const badgeLabel: Record<string, string> = {
   bestseller: "Bestseller",
 }
 
-export default function ProductCard({
+const ProductCard = memo(function ProductCard({
   item,
   className,
 }: {
@@ -92,4 +93,6 @@ export default function ProductCard({
       </div>
     </article>
   )
-}
+})
+
+export default ProductCard

@@ -55,7 +55,7 @@ const { deptName, deptSlug, typeName, products } = Astro.props;
       <ProductGrid
         client:load
         products={products}
-        filterBy="none"
+        filterBy="type"
       />
     </div>
   </div>
